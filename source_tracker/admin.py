@@ -1,5 +1,5 @@
 from django.contrib import admin
-from source_tracker import Book, Pamphlet, Article
+from source_tracker.models import Book, Pamphlet, Article
 
 
 class BookAdmin(admin.ModelAdmin):

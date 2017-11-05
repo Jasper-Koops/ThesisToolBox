@@ -19,7 +19,7 @@ from.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('^$', Index.as_view(), name='Index'),
+    url('^$', Index.as_view(), name='index'),
     url('^sources/', include('source_tracker.urls')),
-    url('^person/', include('source_tracker.urls')),
+    url('^person/', include('person_tracker.urls')),
 ]
