@@ -18,4 +18,7 @@ from .views import *
 
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),
+    url('^book-create/', BookCreate.as_view(), name='book_create'),
+    url('^pamphlet-create/', PamphletCreate.as_view(), name='pamphlet_create'),
+    url('^article-create/', ArticleCreate.as_view(), name='article_create'),
 ]
