@@ -5,6 +5,12 @@ from notes.models import Note
 class Nationality(models.Model):
     name = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
 
 class Person(models.Model):
     firstname = models.CharField(max_length=255)
@@ -19,4 +25,7 @@ class Person(models.Model):
 
     @property
     def full_name(self):
+        return self.firstname + " " + self.middlename + " " + self.lastname
+
+    def __str__(self):
         return self.firstname + " " + self.middlename + " " + self.lastname

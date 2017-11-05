@@ -20,4 +20,5 @@ urlpatterns = [
     url('^$', Home.as_view(), name='person_tracker_home'),
     url('^persons/', PersonOverview.as_view(), name='person_overview'),
     url('^add-person/', PersonCreate.as_view(), name='person_create'),
+    url('^add-nationality/', NationalityCreate.as_view(), name='nationality_create'),
 ]
