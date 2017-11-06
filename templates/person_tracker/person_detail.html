@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>DETAIL VAN {{object.full_name}}</h1>
+{% if object.notes %}
+<h2>Notes:</h2>
+{% for note in objects.notes %}
+{{ note }}
+{% endfor %}
+{% endif %}
+<a href="">Create note</a>
+{% endblock %}
