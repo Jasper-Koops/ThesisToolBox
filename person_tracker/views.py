@@ -23,6 +23,11 @@ class PersonCreate(CreateView):
     template_name = "person_tracker/person_create.html"
 
 
+class PersonDetail(DetailView):
+    model = Person
+    template_name = "person_tracker/person_detail.html"
+
+
 class NationalityCreate(CreateView):
     model = Nationality
     success_url = reverse_lazy('person_overview')

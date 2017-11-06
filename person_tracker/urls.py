@@ -18,7 +18,8 @@ from .views import *
 
 urlpatterns = [
     url('^$', Home.as_view(), name='person_tracker_home'),
-    url('^persons/', PersonOverview.as_view(), name='person_overview'),
+    url('^persons/$', PersonOverview.as_view(), name='person_overview'),
+    url('^persons/(?P<pk>[0-9]+)/$', PersonDetail.as_view(), name='person_detail'),
     url('^add-person/', PersonCreate.as_view(), name='person_create'),
     url('^add-nationality/', NationalityCreate.as_view(), name='nationality_create'),
 ]
