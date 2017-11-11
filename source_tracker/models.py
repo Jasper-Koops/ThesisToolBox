@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
 from person_tracker.models import Person
 from notes.models import Note
 
@@ -17,8 +18,9 @@ class Book(models.Model):
     publication_date = models.DateField()
     added_on = models.DateTimeField(auto_now=True)
     source_type = models.CharField(max_length=3, choices=SOURCE_TYPE_CHOICES, default='SEC')
-    publisher = models.ForeignKey(Publisher)
-    notes = models.ForeignKey(Note, blank=True, null=True)
+    publisher_name = models.CharField(max_length=255)
+    publisher_city = models.CharField(max_length=255)
+    notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
 
 
 class Pamphlet(models.Model):
@@ -26,7 +28,7 @@ class Pamphlet(models.Model):
     author = models.ForeignKey(Person)
     publication_date = models.DateField()
     added_on = models.DateTimeField(auto_now=True)
-    notes = models.ForeignKey(Note, blank=True, null=True)
+    notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
 
 
 class Article(models.Model):
@@ -34,5 +36,5 @@ class Article(models.Model):
     author = models.ForeignKey(Person)
     publication_date = models.DateField()
     added_on = models.DateTimeField(auto_now=True)
-    notes = models.ForeignKey(Note, blank=True, null=True)
+    notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
 

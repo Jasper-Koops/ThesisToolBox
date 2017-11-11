@@ -22,4 +22,7 @@ urlpatterns = [
     url('^persons/(?P<pk>[0-9]+)/$', PersonDetail.as_view(), name='person_detail'),
     url('^add-person/', PersonCreate.as_view(), name='person_create'),
     url('^add-nationality/', NationalityCreate.as_view(), name='nationality_create'),
+    url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', PersonNoteAdd.as_view(), name='person_create_note'),
 ]
+
+

@@ -1,9 +1,13 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
 from notes.models import Note
 # Create your models here.
 
 class Nationality(models.Model):
     name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = "nationalities"
 
     def __unicode__(self):
         return self.name
@@ -21,7 +25,7 @@ class Person(models.Model):
     year_of_death = models.DateField(blank=True, null=True)
     nationality = models.ForeignKey(Nationality, blank=True, null=True)
     branch = models.CharField(max_length=255)
-    notes = models.ForeignKey(Note, blank=True, null=True)
+    notes = GenericRelation(Note, null=True, blank=True, related_query_name='notes')
 
     @property
     def full_name(self):
