@@ -7,6 +7,6 @@ class PersonForm(ModelForm):
         model = Person
         fields = ['firstname', 'middlename', 'lastname', 'year_of_birth', 'year_of_death', 'nationality', 'branch']
         widgets = {
-            'year_of_birth': SelectDateWidget(),
-            'year_of_death': SelectDateWidget(),
+            'year_of_birth': SelectDateWidget(years=range(1800, 2018)),
+            'year_of_death': SelectDateWidget(years=range(1800, 2018)),
         }

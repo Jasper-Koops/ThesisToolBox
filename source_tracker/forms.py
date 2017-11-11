@@ -6,7 +6,7 @@ class BookForm(ModelForm):
 
     class Meta:
         model = Book
-        fields = ['title', 'author', 'publication_date', 'publisher', 'source_type']
+        fields = ['title', 'author', 'publication_date', 'publisher_name', 'publisher_city', 'source_type']
         widgets = {
             'publication_date': SelectDateWidget(years=range(1800, 2020)),
         }

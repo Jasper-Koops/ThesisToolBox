@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.apps import apps
+from django.urls import reverse_lazy, reverse
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from person_tracker.models import Person, Nationality
 from person_tracker.forms import PersonForm
-# Create your views here.
+from notes.views import BaseNoteCreateView
+
+
 
 class Home(ListView):
     #template_name = "person_tracker/person_tracker_home.html"
@@ -26,6 +29,23 @@ class PersonCreate(CreateView):
 class PersonDetail(DetailView):
     model = Person
     template_name = "person_tracker/person_detail.html"
+    context_object_name = 'actor'
+
+    # def get_context_data(self, **kwargs):
+    #     data = super(PersonDetail, self).get_context_data(**kwargs)
+    #     print(self.kwargs['pk'])
+    #     current_person = Person.objects.get(self.kwargs['pk'])
+
+        # return data
+
+
+class PersonNoteAdd(BaseNoteCreateView):
+    template_name = "person_tracker/generic_form.html"
+    success_url = reverse_lazy('person_overview')
+
+
+class PersonNoteUpdate():
+    pass
 
 
 class NationalityCreate(CreateView):
