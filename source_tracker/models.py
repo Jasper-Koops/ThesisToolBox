@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from person_tracker.models import Person
-from notes.models import Note
+from notes.models import Note, Tag
 
 class Publisher(models.Model):
     name = models.CharField(max_length=255)
@@ -21,6 +21,7 @@ class Book(models.Model):
     publisher_name = models.CharField(max_length=255)
     publisher_city = models.CharField(max_length=255)
     notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
+    tags = models.ManyToManyField(Tag, blank=True)
 
 
 class Pamphlet(models.Model):
@@ -29,6 +30,7 @@ class Pamphlet(models.Model):
     publication_date = models.DateField()
     added_on = models.DateTimeField(auto_now=True)
     notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
+    tags = models.ManyToManyField(Tag, blank=True)
 
 
 class Article(models.Model):
@@ -37,4 +39,5 @@ class Article(models.Model):
     publication_date = models.DateField()
     added_on = models.DateTimeField(auto_now=True)
     notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
+    tags = models.ManyToManyField(Tag, blank=True)
 

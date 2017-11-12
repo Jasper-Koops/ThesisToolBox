@@ -31,13 +31,6 @@ class PersonDetail(DetailView):
     template_name = "person_tracker/person_detail.html"
     context_object_name = 'actor'
 
-    # def get_context_data(self, **kwargs):
-    #     data = super(PersonDetail, self).get_context_data(**kwargs)
-    #     print(self.kwargs['pk'])
-    #     current_person = Person.objects.get(self.kwargs['pk'])
-
-        # return data
-
 
 class PersonNoteAdd(BaseNoteCreateView):
     template_name = "person_tracker/generic_form.html"
