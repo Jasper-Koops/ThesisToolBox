@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
-from notes.models import Note
+from notes.models import Note, Tag
 # Create your models here.
 
 class Nationality(models.Model):
@@ -26,6 +26,7 @@ class Person(models.Model):
     nationality = models.ForeignKey(Nationality, blank=True, null=True)
     branch = models.CharField(max_length=255)
     notes = GenericRelation(Note, null=True, blank=True, related_query_name='notes')
+    tags = models.ManyToManyField(Tag, blank=True)
 
     @property
     def full_name(self):

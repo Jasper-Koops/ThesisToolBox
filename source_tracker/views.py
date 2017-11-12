@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from source_tracker.models import Book, Pamphlet, Article
 from source_tracker.forms import BookForm, PamphletForm, ArticleForm
+from notes.views import BaseNoteCreateView
 
 # Create your views here.
 
@@ -23,13 +24,25 @@ class BookCreate(CreateView):
     success_url = reverse_lazy('source_tracker_home')
 
 
+class BookNoteAdd(BaseNoteCreateView):
+    pass
+
+
 class PamphletCreate(CreateView):
     form_class = PamphletForm
     template_name = "source_tracker/pamphlet_create.html"
     success_url = reverse_lazy('source_tracker_home')
 
 
+class PamphletNoteAdd(BaseNoteCreateView):
+    pass
+
+
 class ArticleCreate(CreateView):
     form_class = ArticleForm
     template_name = "source_tracker/article_create.html"
     success_url = reverse_lazy('source_tracker_home')
+
+
+class ArticleNoteAdd(BaseNoteCreateView):
+    pass

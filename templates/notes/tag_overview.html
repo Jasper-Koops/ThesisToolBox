@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Jeej TAGOVERVIEWhome</h1>
+    <a href="{% url 'tag_create' %}">create new</a>
+    {% for tag in object_list %}
+    <ul>
+    <li>{{tag.name}}</li>
+    </ul>
+    {% endfor %}
+{% endblock %}

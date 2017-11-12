@@ -7,7 +7,7 @@ class NoteForm(ModelForm):
 
     class Meta:
         model = Note
-        fields = ['content']
+        fields = ['content', 'tags']
 
     def __init__(self, *args, **kwargs):
         self.model = kwargs.pop('model')
