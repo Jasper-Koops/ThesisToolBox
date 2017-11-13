@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
 from notes.models import Note, Tag
@@ -5,6 +6,7 @@ from notes.models import Note, Tag
 
 class Nationality(models.Model):
     name = models.CharField(max_length=255)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     class Meta:
         verbose_name_plural = "nationalities"
@@ -26,7 +28,8 @@ class Person(models.Model):
     nationality = models.ForeignKey(Nationality, blank=True, null=True)
     branch = models.CharField(max_length=255)
     notes = GenericRelation(Note, null=True, blank=True, related_query_name='notes')
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, related_name='person_tags')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     @property
     def full_name(self):

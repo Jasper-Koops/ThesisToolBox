@@ -10,5 +10,5 @@ class Index(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         data = super(Index, self).get_context_data(**kwargs)
-        data['notes'] = Note.objects.all().order_by('-id')[:5]
+        data['notes'] = Note.objects.filter(user=self.request.user).order_by('-id')[:5]
         return data
