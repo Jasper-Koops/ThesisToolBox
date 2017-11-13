@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<div class="container">
 <h1>Jeej personOVERVIEWhome</h1>
     <a href="{% url 'person_create' %}">Add person</a>
     <a href="{% url 'nationality_create' %}">Add nationality</a>
@@ -9,4 +10,6 @@
         <li><a href="{% url 'person_detail' pk=object.pk %}">{{ object.full_name }}</a></li>
     {% endfor %}
     </ul>
+
+ </div>
 {% endblock %}

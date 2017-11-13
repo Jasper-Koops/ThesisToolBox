@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
     {% block content %}
+    <div class="container">
     <h1>DETAIL VAN {{object.full_name}}</h1>
     <a href="{% url 'person_create_note' 'person' 'person_tracker' object.pk %}">create note</a>
     {% if object.notes %}
@@ -8,4 +9,6 @@
             {{ note.content }}
         {% endfor %}
     {% endif %}
+
+    </div>
 {% endblock %}

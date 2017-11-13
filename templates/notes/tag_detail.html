@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<div class="container">
 <h1>Jeej TAGDETAIL van {{ object.name }}</h1>
 <a href="{% url 'tag_create_note' 'tag' 'notes' object.pk %}">create note</a>
 
@@ -40,4 +41,5 @@
         </ul>
 {% endif %}
 
+</div>
 {% endblock %}

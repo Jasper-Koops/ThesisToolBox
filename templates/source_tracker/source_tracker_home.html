@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<div class="container">
 <h1>Jeej sourcetrackerhome</h1>
 
     <a href="{% url 'book_create' %}">Add book</a>
@@ -27,4 +28,5 @@
         {% endfor %}
     {% endif %}
 
+</div>
 {% endblock %}
