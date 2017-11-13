@@ -4,7 +4,7 @@
     <a href="{% url 'tag_create' %}">create new</a>
     {% for tag in object_list %}
     <ul>
-    <li>{{tag.name}}</li>
+    <li><a href="{% url 'tag_detail' pk=tag.pk%}">{{tag.name}}</a></li>
     </ul>
     {% endfor %}
 {% endblock %}

@@ -6,7 +6,7 @@ class BookForm(ModelForm):
 
     class Meta:
         model = Book
-        fields = ['title', 'author', 'publication_date', 'publisher_name', 'publisher_city', 'source_type']
+        fields = ['title', 'author', 'publication_date', 'publisher_name', 'publisher_city', 'source_type', 'tags']
         widgets = {
             'publication_date': SelectDateWidget(years=range(1800, 2020)),
         }
@@ -16,7 +16,7 @@ class PamphletForm(ModelForm):
 
     class Meta:
         model = Pamphlet
-        fields = ['title', 'author', 'publication_date']
+        fields = ['title', 'author', 'publication_date', 'tags']
         widgets = {
             'publication_date': SelectDateWidget(years=range(1800, 2020)),
         }
@@ -26,7 +26,7 @@ class ArticleForm(ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'author', 'publication_date']
+        fields = ['title', 'author', 'publication_date', 'tags']
         widgets = {
             'publication_date': SelectDateWidget(years=range(1800, 2020)),
         }

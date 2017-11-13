@@ -19,6 +19,10 @@ from .views import *
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),
     url('^book-create/', BookCreate.as_view(), name='book_create'),
+    url('^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='book_detail'),
     url('^pamphlet-create/', PamphletCreate.as_view(), name='pamphlet_create'),
+    url('^pamphlets/(?P<pk>[0-9]+)/$', PamphletDetail.as_view(), name='pamphlet_detail'),
     url('^article-create/', ArticleCreate.as_view(), name='article_create'),
+    url('^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view(), name='article_detail'),
+    url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', SourceNoteAdd.as_view(), name='source_create_note'),
 ]
