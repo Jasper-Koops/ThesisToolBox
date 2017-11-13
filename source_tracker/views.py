@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from source_tracker.models import Book, Pamphlet, Article
 from source_tracker.forms import BookForm, PamphletForm, ArticleForm
@@ -6,7 +7,8 @@ from notes.views import BaseNoteCreateView
 
 # Create your views here.
 
-class Home(TemplateView):
+class Home(LoginRequiredMixin, TemplateView):
+    login_url = '/login/'
 
     def get_context_data(self, **kwargs):
         data = super(Home, self).get_context_data(**kwargs)
@@ -18,20 +20,23 @@ class Home(TemplateView):
     template_name = "source_tracker/source_tracker_home.html"
 
 
-class BookCreate(CreateView):
+class BookCreate(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     form_class = BookForm
     template_name = "source_tracker/book_create.html"
     success_url = reverse_lazy('source_tracker_home')
 
 
-class BookUpdate(UpdateView):
+class BookUpdate(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
     model = Book
     form_class = BookForm
     template_name = 'base/generic_form.html'
     success_url = reverse_lazy('source_tracker_home')
 
 
-class BookDetail(DetailView):
+class BookDetail(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
     model = Book
     template_name = 'source_tracker/detail_views/book_detail.html'
 
@@ -40,20 +45,23 @@ class BookNoteAdd(BaseNoteCreateView):
     pass
 
 
-class PamphletCreate(CreateView):
+class PamphletCreate(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     form_class = PamphletForm
     template_name = "source_tracker/pamphlet_create.html"
     success_url = reverse_lazy('source_tracker_home')
 
 
-class PamphletUpdate(UpdateView):
+class PamphletUpdate(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
     model = Pamphlet
     form_class = PamphletForm
     template_name = 'base/generic_form.html'
     success_url = reverse_lazy('source_tracker_home')
 
 
-class PamphletDetail(DetailView):
+class PamphletDetail(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
     model = Pamphlet
     template_name = 'source_tracker/detail_views/pamphlet_detail.html'
 
@@ -62,20 +70,20 @@ class PamphletNoteAdd(BaseNoteCreateView):
     pass
 
 
-class ArticleCreate(CreateView):
+class ArticleCreate(LoginRequiredMixin, CreateView):
     form_class = ArticleForm
     template_name = "source_tracker/article_create.html"
     success_url = reverse_lazy('source_tracker_home')
 
 
-class ArticleUpdate(UpdateView):
+class ArticleUpdate(LoginRequiredMixin, UpdateView):
     model = Article
     form_class = ArticleForm
     template_name = 'base/generic_form.html'
     success_url = reverse_lazy('source_tracker_home')
 
 
-class ArticleDetail(DetailView):
+class ArticleDetail(LoginRequiredMixin, DetailView):
     model = Article
     template_name = 'source_tracker/detail_views/article_detail.html'
 
