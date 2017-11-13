@@ -12,9 +12,9 @@ class Home(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         data = super(Home, self).get_context_data(**kwargs)
-        data['books'] = Book.objects.all()
-        data['pamphlets'] = Pamphlet.objects.all()
-        data['articles'] = Article.objects.all()
+        data['books'] = Book.objects.filter(user=self.request.user)
+        data['pamphlets'] = Pamphlet.objects.filter(user=self.request.user)
+        data['articles'] = Article.objects.filter(user=self.request.user)
         return data
 
     template_name = "source_tracker/source_tracker_home.html"
@@ -25,6 +25,10 @@ class BookCreate(LoginRequiredMixin, CreateView):
     form_class = BookForm
     template_name = "source_tracker/book_create.html"
     success_url = reverse_lazy('source_tracker_home')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class BookUpdate(LoginRequiredMixin, UpdateView):
@@ -51,6 +55,10 @@ class PamphletCreate(LoginRequiredMixin, CreateView):
     template_name = "source_tracker/pamphlet_create.html"
     success_url = reverse_lazy('source_tracker_home')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class PamphletUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
@@ -74,6 +82,10 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
     form_class = ArticleForm
     template_name = "source_tracker/article_create.html"
     success_url = reverse_lazy('source_tracker_home')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class ArticleUpdate(LoginRequiredMixin, UpdateView):

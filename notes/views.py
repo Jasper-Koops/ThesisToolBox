@@ -27,11 +27,19 @@ class BaseNoteCreateView(LoginRequiredMixin, CreateView):
         kwargs['model_pk'] = self.kwargs['model_pk']
         return kwargs
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class TagOverview(LoginRequiredMixin, ListView):
     login_url = '/login/'
     model = Tag
     template_name = 'notes/tag_overview.html'
+
+    def get_queryset(self):
+        qs = Tag.objects.filter(user=self.request.user)
+        return qs
 
 
 class TagDetail(LoginRequiredMixin, DetailView):
@@ -53,6 +61,10 @@ class TagCreate(LoginRequiredMixin, CreateView):
     template_name = 'base/generic_form.html'
     fields = ['name']
     success_url = reverse_lazy('tag_overview')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class TagNoteAdd(BaseNoteCreateView):

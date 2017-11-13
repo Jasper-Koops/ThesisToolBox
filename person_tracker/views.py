@@ -15,11 +15,19 @@ class Home(LoginRequiredMixin, ListView):
     model = Person
     template_name = "person_tracker/person_overview.html"
 
+    def get_queryset(self):
+        qs = Person.objects.filter(user=self.request.user)
+        return qs
+
 
 class PersonOverview(LoginRequiredMixin, ListView):
     login_url = '/login/'
     model = Person
     template_name = "person_tracker/person_overview.html"
+
+    def get_queryset(self):
+        qs = Person.objects.filter(user=self.request.user)
+        return qs
 
 
 class PersonCreate(LoginRequiredMixin, CreateView):
@@ -28,6 +36,10 @@ class PersonCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('person_overview')
     form_class = PersonForm
     template_name = "person_tracker/person_create.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class PersonDetail(LoginRequiredMixin, DetailView):
@@ -55,8 +67,16 @@ class NationalityCreate(LoginRequiredMixin, CreateView):
     fields = ['name']
     template_name = "person_tracker/nationality_create.html"
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class NationalityOverview(LoginRequiredMixin, ListView):
     login_url = '/login/'
     model = Person
     template_name = "person_tracker/nationality_overview.html"
+
+    def get_queryset(self):
+        qs = Person.objects.filter(user=self.request.user)
+        return qs
