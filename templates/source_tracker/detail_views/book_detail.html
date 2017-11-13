@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Jeej DETAIL van {{ object.title }}</h1>
+
+<a href="{% url 'source_create_note' 'book' 'source_tracker' object.pk %}">create note</a>
+{% if object.notes %}
+        <h2>Notes:</h2>
+        {% for note in object.notes.all %}
+            {{ note.content }}
+        {% endfor %}
+{% endif %}
+
+{% endblock %}

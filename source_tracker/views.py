@@ -24,6 +24,11 @@ class BookCreate(CreateView):
     success_url = reverse_lazy('source_tracker_home')
 
 
+class BookDetail(DetailView):
+    model = Book
+    template_name = 'source_tracker/detail_views/book_detail.html'
+
+
 class BookNoteAdd(BaseNoteCreateView):
     pass
 
@@ -32,6 +37,11 @@ class PamphletCreate(CreateView):
     form_class = PamphletForm
     template_name = "source_tracker/pamphlet_create.html"
     success_url = reverse_lazy('source_tracker_home')
+
+
+class PamphletDetail(DetailView):
+    model = Pamphlet
+    template_name = 'source_tracker/detail_views/pamphlet_detail.html'
 
 
 class PamphletNoteAdd(BaseNoteCreateView):
@@ -44,5 +54,15 @@ class ArticleCreate(CreateView):
     success_url = reverse_lazy('source_tracker_home')
 
 
+class ArticleDetail(DetailView):
+    model = Article
+    template_name = 'source_tracker/detail_views/articlec_detail.html'
+
+
 class ArticleNoteAdd(BaseNoteCreateView):
     pass
+
+
+class SourceNoteAdd(BaseNoteCreateView):
+    template_name = "base/generic_form.html"
+    success_url = reverse_lazy('source_tracker_home')

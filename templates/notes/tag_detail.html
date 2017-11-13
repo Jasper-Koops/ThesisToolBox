@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Jeej TAGDETAIL van {{ object.name }}</h1>
+
+{% if books %}
+<h2>Books:</h2>
+    <ul>
+    {% for book in books %}
+        <li><a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if articles %}
+<h2>Articles:</h2>
+    <ul>
+    {% for article in articles %}
+        <li><a href="{% url 'article_detail' pk=article.pk %}">{{article.title}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if pamphlets %}
+<h2>Pamphlets:</h2>
+    <ul>
+    {% for pamphlet in pamphlets %}
+        <li><a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}">{{pamphlet.title}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

@@ -18,6 +18,7 @@ from .views import *
 
 urlpatterns = [
     url('^tags/$', TagOverview.as_view(), name='tag_overview'),
+    url('^tag/(?P<pk>[0-9]+)/$', TagDetail.as_view(), name='tag_detail'),
     url('^tags/create/$', TagCreate.as_view(), name='tag_create'),
 
 ]
