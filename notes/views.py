@@ -1,7 +1,8 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.urls import reverse_lazy
 from .forms import NoteForm
 from .models import Tag
+
 
 from person_tracker.models import Person
 from source_tracker.models import Book, Article, Pamphlet
@@ -9,6 +10,9 @@ from source_tracker.models import Book, Article, Pamphlet
 from django.apps import apps
 
 # Create your views here.
+
+class TodoView(TemplateView):
+    template_name = 'base/todo.html'
 
 class BaseNoteCreateView(CreateView):
 
@@ -43,4 +47,9 @@ class TagCreate(CreateView):
     model = Tag
     template_name = 'base/generic_form.html'
     fields = ['name']
+    success_url = reverse_lazy('tag_overview')
+
+
+class TagNoteAdd(BaseNoteCreateView):
+    template_name = "base/generic_form.html"
     success_url = reverse_lazy('tag_overview')
