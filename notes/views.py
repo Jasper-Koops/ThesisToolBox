@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import NoteForm
 from .models import Tag
@@ -11,11 +12,12 @@ from django.apps import apps
 
 # Create your views here.
 
-class TodoView(TemplateView):
+class TodoView(LoginRequiredMixin, TemplateView):
+    login_url = '/login/'
     template_name = 'base/todo.html'
 
-class BaseNoteCreateView(CreateView):
-
+class BaseNoteCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     form_class = NoteForm
 
     def get_form_kwargs(self):
@@ -26,12 +28,14 @@ class BaseNoteCreateView(CreateView):
         return kwargs
 
 
-class TagOverview(ListView):
+class TagOverview(LoginRequiredMixin, ListView):
+    login_url = '/login/'
     model = Tag
     template_name = 'notes/tag_overview.html'
 
 
-class TagDetail(DetailView):
+class TagDetail(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
     model = Tag
     template_name = 'notes/tag_detail.html'
 
@@ -43,7 +47,8 @@ class TagDetail(DetailView):
         return data
 
 
-class TagCreate(CreateView):
+class TagCreate(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     model = Tag
     template_name = 'base/generic_form.html'
     fields = ['name']

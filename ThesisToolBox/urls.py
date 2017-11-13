@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, include
+from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from.views import *
 
@@ -25,6 +26,9 @@ urlpatterns = [
     url('^sources/', include('source_tracker.urls')),
     url('^person/', include('person_tracker.urls')),
     url('^notes/', include('notes.urls')),
+
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 ]
 
 if settings.DEBUG:
