@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from source_tracker.models import Book, Pamphlet, Article
 from source_tracker.forms import BookForm, PamphletForm, ArticleForm
 from notes.views import BaseNoteCreateView
@@ -24,6 +24,13 @@ class BookCreate(CreateView):
     success_url = reverse_lazy('source_tracker_home')
 
 
+class BookUpdate(UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'base/generic_form.html'
+    success_url = reverse_lazy('source_tracker_home')
+
+
 class BookDetail(DetailView):
     model = Book
     template_name = 'source_tracker/detail_views/book_detail.html'
@@ -36,6 +43,13 @@ class BookNoteAdd(BaseNoteCreateView):
 class PamphletCreate(CreateView):
     form_class = PamphletForm
     template_name = "source_tracker/pamphlet_create.html"
+    success_url = reverse_lazy('source_tracker_home')
+
+
+class PamphletUpdate(UpdateView):
+    model = Pamphlet
+    form_class = PamphletForm
+    template_name = 'base/generic_form.html'
     success_url = reverse_lazy('source_tracker_home')
 
 
@@ -54,9 +68,16 @@ class ArticleCreate(CreateView):
     success_url = reverse_lazy('source_tracker_home')
 
 
+class ArticleUpdate(UpdateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'base/generic_form.html'
+    success_url = reverse_lazy('source_tracker_home')
+
+
 class ArticleDetail(DetailView):
     model = Article
-    template_name = 'source_tracker/detail_views/articlec_detail.html'
+    template_name = 'source_tracker/detail_views/article_detail.html'
 
 
 class ArticleNoteAdd(BaseNoteCreateView):

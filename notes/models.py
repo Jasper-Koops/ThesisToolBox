@@ -6,6 +6,7 @@ from django.db import models
 class Tag(models.Model):
     added_on = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=300)
+    notes = GenericRelation('Note', blank=True, null=True, related_name='notes')
 
     def __str__(self):
         return self.name

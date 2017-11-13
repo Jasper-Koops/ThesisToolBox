@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <h1>Jeej TAGDETAIL van {{ object.name }}</h1>
+<a href="{% url 'tag_create_note' 'tag' 'notes' object.pk %}">create note</a>
 
 {% if books %}
 <h2>Books:</h2>
@@ -27,6 +28,16 @@
         <li><a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}">{{pamphlet.title}}</a></li>
     {% endfor %}
     </ul>
+{% endif %}
+
+
+{% if object.notes %}
+        <h2>Notes:</h2>
+        <ul>
+        {% for note in object.notes.all %}
+            <li>{{ note.content }}</li>
+        {% endfor %}
+        </ul>
 {% endif %}
 
 {% endblock %}
