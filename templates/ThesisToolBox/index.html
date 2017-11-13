@@ -1,4 +1,31 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<div class="container">
 <h1>Jeej de index pagina Jeej</h1>
+<p>Toon laatste X berichten, tags en boeken enzo</p>
+<p>Person objecten zijn nog niet editbaar</p>
+<p>De layout is overal nog superkut</p>
+
+    <div class="row">
+        <div class="col-md">
+        <h2>Sources</h2>
+        <p>Sorteer onder by type, of gewoon list?</p>
+        <hr>
+
+        </div>
+
+        <div class="col-md">
+        <h2>Recent Messages:</h2>
+        <p>Klik op note zodat je naar het 'genote' object gaat <-- als in, fix dit</p>
+        <hr>
+        {% for note in notes %}
+        {{ note.content|linebreaks }}<hr>
+
+        {% endfor %}
+
+        </div>
+    </div>
+
+
+</div>
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<div class="container">
 <h1>Jeej DETAIL van {{ object.title }}</h1>
 <a href="{% url 'article_update' pk=object.pk %}">Update</a>
 
@@ -10,5 +11,5 @@
             {{ note.content }}
         {% endfor %}
 {% endif %}
-
+</div>
 {% endblock %}
