@@ -2,6 +2,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     //the base directory (absolute path) for resolving the entry option
@@ -21,6 +22,7 @@ module.exports = {
     plugins: [
         //tells webpack where to store data about your bundles.
         new BundleTracker({filename: './webpack-stats.json'}),
+        new UglifyJsPlugin(),
         //makes jQuery available in every module
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -49,9 +51,9 @@ module.exports = {
 
     resolve: {
         //tells webpack where to look for modules
-        modulesDirectories: ['node_modules'],
+        modules: ['node_modules'],
         //extensions that should be used to resolve modules
-        extensions: ['', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     }
 
 
