@@ -29,6 +29,9 @@ urlpatterns = [
 
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/v1/', include('rest_api.urls', namespace='api')),
 ]
 
 if settings.DEBUG:
