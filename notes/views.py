@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from .forms import NoteForm
 from .models import Tag
 
-
 from person_tracker.models import Person
 from source_tracker.models import Book, Article, Pamphlet
 

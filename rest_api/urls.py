@@ -19,14 +19,21 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', api_root),
+
     url(r'^books/$', BookList.as_view(), name='api_book_list'),
-    url(r'^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='api_book-detail'),
+    url(r'^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='api_book_detail'),
 
     url(r'^articles/$', ArticleList.as_view(), name='api_article_list'),
-    url(r'^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view(), name='api_article-detail'),
+    url(r'^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view(), name='api_article_detail'),
 
     url(r'^pamphlets/$', PamphletList.as_view(), name='api_pamphlet_list'),
-    url(r'^pamphlets/(?P<pk>[0-9]+)/$', PamphletDetail.as_view(), name='pamphlet-detail'),
+    url(r'^pamphlets/(?P<pk>[0-9]+)/$', PamphletDetail.as_view(), name='pamphlet_detail'),
+
+    url(r'^notes/$', NoteList.as_view(), name='api_note_list'),
+    url(r'^notes/(?P<pk>[0-9]+)/$', NoteDetail.as_view(), name='api_note_detail'),
+
+    url(r'^persons/$', PersonList.as_view(), name='api_person_list'),
+    url(r'^persons/(?P<pk>[0-9]+)/$', PersonDetail.as_view(), name='api_person_detail'),
 
     url(r'^users/$', UserList.as_view(), name='api_user_list'),
     url(r'^users/(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='user-detail'),
