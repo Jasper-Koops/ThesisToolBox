@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from .serializers import *
 from source_tracker.models import Book, Pamphlet, Article
 from rest_framework import permissions
@@ -54,3 +56,13 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'books': reverse('api:api_book_list'),
+        'users': reverse('api:api_user_list')
+    })
+
