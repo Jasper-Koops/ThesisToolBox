@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         User = get_user_model()
         model = User
-        fields = ('username', 'email', 'groups')
+        fields = ('id', 'username', 'email', 'groups')
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user')
+        fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user')
 
 
 
