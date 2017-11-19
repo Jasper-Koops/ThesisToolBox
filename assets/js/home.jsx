@@ -8,7 +8,6 @@ const divStyle = {
 };
 
 
-let list = <Fetch url='http://127.0.0.1:8000/api/v1/books' />;
 class Welcome extends React.Component {
 
     constructor(props) {
@@ -17,14 +16,14 @@ class Welcome extends React.Component {
     }
 
     componentDidMount() {
-    fetch("http://127.0.0.1:8000/api/v1/books")
-      .then(res => res.json())
-      .then(result =>
-        this.setState({
-          book_list: result
-        })
-      )
-  }
+        fetch("http://127.0.0.1:8000/api/v1/books")
+          .then(res => res.json())
+          .then(result =>
+            this.setState({
+              book_list: result
+            })
+          )
+    }
 
   render() {
 
