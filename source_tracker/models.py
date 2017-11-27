@@ -27,6 +27,21 @@ class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
 
+class ReactBook(models.Model):
+    SOURCE_TYPE_CHOICES = (
+        ('PRI', 'Primary'),
+        ('SEC', 'Secondary')
+    )
+    title = models.CharField(max_length=255)
+    publication_date = models.DateField()
+    added_on = models.DateTimeField(auto_now=True)
+    source_type = models.CharField(max_length=3, choices=SOURCE_TYPE_CHOICES, default='SEC')
+    publisher_name = models.CharField(max_length=255)
+    publisher_city = models.CharField(max_length=255)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+
+
 
 class Pamphlet(models.Model):
     title = models.CharField(max_length=255)

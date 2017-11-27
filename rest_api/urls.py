@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^books/$', BookList.as_view(), name='api_book_list'),
     url(r'^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='api_book_detail'),
 
+    url(r'^books/create/$', BookCreate.as_view(), name='api_book_create'),
+
     url(r'^articles/$', ArticleList.as_view(), name='api_article_list'),
     url(r'^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view(), name='api_article_detail'),
 

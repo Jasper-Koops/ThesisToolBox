@@ -31,6 +31,9 @@ class BookCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class ReactBookCreate(LoginRequiredMixin, TemplateView):
+    template_name = 'source_tracker/react_book_create.html'
+
 class BookUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     model = Book
