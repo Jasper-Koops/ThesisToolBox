@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from source_tracker.models import Book, Pamphlet, Article
+from source_tracker.models import Book, Pamphlet, Article, ReactBook
 from notes.models import Note, Tag
 from person_tracker.models import Person
 
@@ -45,6 +45,12 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user', 'notes')
 
+
+class ReactBookSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ReactBook
+        fields = ('id', 'title', 'publication_date')
 
 
 

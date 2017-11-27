@@ -51,6 +51,10 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class BookCreate(generics.CreateAPIView):
+    serializer_class = ReactBookSerializer
+
+
 class ArticleList(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-publication_date')
     serializer_class = ArticleSerializer

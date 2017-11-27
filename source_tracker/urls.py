@@ -19,6 +19,8 @@ from .views import *
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),
     url('^book-create/', BookCreate.as_view(), name='book_create'),
+    url('^react/', ReactBookCreate.as_view(), name='react_book_create'),
+
     url('^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='book_detail'),
     url('^books/(?P<pk>[0-9]+)/update/$', BookUpdate.as_view(), name='book_update'),
 
