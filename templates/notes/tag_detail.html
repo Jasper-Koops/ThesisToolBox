@@ -16,7 +16,7 @@
 {% if alto_books %}
 <h2>ALTOBooks:</h2>
     <ul>
-    {% for book in alto_books %}
+    {% for book in alto_books.all %}
         <li><a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a></li>
     {% endfor %}
     </ul>
