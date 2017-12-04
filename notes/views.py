@@ -52,6 +52,7 @@ class TagDetail(LoginRequiredMixin, DetailView):
         data['alto_books'] = self.object.book_tags
         data['pamphlets'] = Pamphlet.objects.filter(tags__id=self.object.pk)
         data['articles'] = Article.objects.filter(tags__id=self.object.pk)
+        data['persons'] = Person.objects.filter(tags__id=self.objects.pk)
         data['notes'] = Note.objects.filter(tags__id=self.object.pk)
         return data
 
