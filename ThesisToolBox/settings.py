@@ -25,7 +25,7 @@ SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['188.226.169.96']
+ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu']
 
 
 # Application definition
