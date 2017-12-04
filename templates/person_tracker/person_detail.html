@@ -7,6 +7,9 @@
         <h2>Notes:</h2>
         {% for note in object.notes.all %}
             {{ note.content }}
+            {% for tag in note.tags.all %}
+                <p>{{tag}}</p>
+            {% endfor %}
         {% endfor %}
     {% endif %}
 
