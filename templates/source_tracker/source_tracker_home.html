@@ -11,6 +11,11 @@
         <h2>Books:</h2>
         {% for book in books %}
         <a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a>
+        <br>
+        author: {{ book.author }} -- {{ book.publication_date }}
+        <br>
+        <hr>
+
         {% endfor %}
     {% endif %}
 
@@ -18,6 +23,10 @@
         <h2>Articles:</h2>
         {% for article in articles %}
         <a href="{% url 'article_detail' pk=article.pk %}">{{article.title}}</a>
+        <br>
+        author: {{ article.author }} -- {{ article.publication_date }}
+        <br>
+        <hr>
         {% endfor %}
     {% endif %}
 
@@ -25,6 +34,10 @@
         <h2>Pamphlets:</h2>
         {% for pamphlet in pamphlets %}
         <a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}">{{pamphlet.title}}</a>
+        <br>
+        author: {{ pamphlet.author }} -- {{ pamphlet.publication_date }}
+        <br>
+        <hr>
         {% endfor %}
     {% endif %}
 
