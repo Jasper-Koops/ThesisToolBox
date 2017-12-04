@@ -48,10 +48,10 @@ class TagDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         data = super(TagDetail, self).get_context_data(**kwargs)
-        data['books'] = Book.objects.filter(tags__in=self.object)
-        data['pamphlets'] = Pamphlet.objects.filter(tags__in=self.object)
-        data['articles'] = Article.objects.filter(tags__in=self.object)
-        data['notes'] = Note.objects.filter(tags__in=self.object)
+        data['books'] = Book.objects.filter(tags__id=self.object.pk)
+        data['pamphlets'] = Pamphlet.objects.filter(tags__id=self.object.pk)
+        data['articles'] = Article.objects.filter(tags__id=self.object.pk)
+        data['notes'] = Note.objects.filter(tags__id=self.object.pk)
         return data
 
 
