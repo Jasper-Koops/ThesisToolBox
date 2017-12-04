@@ -69,6 +69,7 @@ class TagCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class TagNoteAdd(BaseNoteCreateView):
+class TagNoteAdd(LoginRequiredMixin, BaseNoteCreateView):
+    login_url = '/login/'
     template_name = "base/generic_form.html"
     success_url = reverse_lazy('tag_overview')

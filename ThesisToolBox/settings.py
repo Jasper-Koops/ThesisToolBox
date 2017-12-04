@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu']
 
@@ -170,7 +170,9 @@ INTERNAL_IPS = ('127.0.0.1')
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.renderers.TemplateHTMLRenderer',
+
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 30,

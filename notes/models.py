@@ -24,4 +24,4 @@ class Note(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __str__(self):
-        return self.content[:10]
+        return self.content[:30]
