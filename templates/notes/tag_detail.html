@@ -4,6 +4,17 @@
 <h1>Jeej TAGDETAIL van {{ object.name }}</h1>
 <a href="{% url 'tag_create_note' 'tag' 'notes' object.pk %}">create note</a>
 
+
+{% if persons %}
+<h2>Persons:</h2>
+    <ul>
+    {% for person in persons %}
+        <li><a href="{% url 'person_detail' pk=person.pk %}">{{person.name}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
 {% if books %}
 <h2>Books:</h2>
     <ul>
