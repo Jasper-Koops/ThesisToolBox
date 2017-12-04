@@ -14,10 +14,12 @@
 {% endif %}
 
 {% if alto_books %}
+{{ alto_books }}
 <h2>ALTOBooks:</h2>
     <ul>
     {% for book in alto_books.all %}
         <li><a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a></li>
+        {{book}}
     {% endfor %}
     </ul>
 {% endif %}
