@@ -36,7 +36,7 @@
         <h2>Notes:</h2>
         <ul>
         {% for note in object.notes.all %}
-            {{ note.added_on }} <br>
+            <b>{{ note.added_on }}</b> <br>
             <li>{{ note.content }}</li>
             <br>
             <hr>
