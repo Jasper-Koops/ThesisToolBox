@@ -8,7 +8,13 @@
 {% if object.notes %}
         <h2>Notes:</h2>
         {% for note in object.notes.all %}
-            {{ note.content }}
+            <b> {{note.added_on}}</b>
+            {{ note.content|linebreaks }}
+            {% for tag in note.tags.all %}
+                {{ tag }} <br>
+            {% endfor %}
+            <br>
+            <hr>
         {% endfor %}
 {% endif %}
 </div>
