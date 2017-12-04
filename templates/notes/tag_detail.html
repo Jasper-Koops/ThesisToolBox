@@ -31,6 +31,15 @@
     </ul>
 {% endif %}
 
+{% if notes %}
+<h1>DOMME FOUT</h1>
+    {% for note in notes %}
+        <b>{{ note.added_on }}</b> <br>
+        <li>{{ note.content }}</li>
+        <br>
+        <hr>
+    {% endfor %}
+{% endif %}
 
 {% if object.notes %}
         <h2>Notes:</h2>
