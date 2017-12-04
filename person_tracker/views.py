@@ -49,7 +49,7 @@ class PersonDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'actor'
 
 
-class PersonNoteAdd(LoginRequiredMixin, BaseNoteCreateView):
+class PersonNoteAdd(BaseNoteCreateView):
     login_url = '/login/'
     template_name = "person_tracker/generic_form.html"
     success_url = reverse_lazy('person_overview')
