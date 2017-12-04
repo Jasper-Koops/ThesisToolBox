@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import NoteForm
-from .models import Tag
+from .models import Tag, Note
 
 from person_tracker.models import Person
 from source_tracker.models import Book, Article, Pamphlet
