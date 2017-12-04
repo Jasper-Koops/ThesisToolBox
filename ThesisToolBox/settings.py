@@ -25,7 +25,7 @@ SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['188.226.169.96']
 
 
 # Application definition
@@ -133,11 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'assets'),
-)
-STATIC_ROOT = os.path.join(BASE_DIR, 'root_static/')
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#    os.path.join(BASE_DIR, 'assets'),
+#)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 WEBPACK_LOADER = {
     'DEFAULT': {
