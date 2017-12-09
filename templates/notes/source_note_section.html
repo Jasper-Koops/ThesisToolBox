@@ -1,0 +1,8 @@
+{% for tag in object.tags.all %}
+    <a href="{% url 'tag_detail' pk=tag.pk %}"><h3>{{ tag }}</h3></a> <br>
+    {% for note in tag.notes.all %}
+        <b> {{note.added_on}}</b>
+        {{ note.content|linebreaks }}
+        <hr>
+    {% endfor %}
+{% endfor %}
