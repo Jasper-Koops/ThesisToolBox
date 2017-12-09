@@ -3,15 +3,8 @@
     <div class="container">
     <h1>DETAIL VAN {{object.full_name}}</h1>
     <a href="{% url 'person_create_note' 'person' 'person_tracker' object.pk %}">create note</a>
-    {% if object.notes %}
-        <h2>Notes:</h2>
-        {% for note in object.notes.all %}
-            {{ note.content }}
-            {% for tag in note.tags.all %}
-                <p>{{tag}}</p>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
+
+    {% include 'notes/note_section.html' %}
 
     </div>
 {% endblock %}

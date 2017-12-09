@@ -5,18 +5,8 @@
 <a href="{% url 'pamphlet_update' pk=object.pk %}">Update</a>
 
 <a href="{% url 'source_create_note' 'pamphlet' 'source_tracker' object.pk %}">create note</a>
-{% if object.notes %}
-        <h2>Notes:</h2>
-        {% for note in object.notes.all %}
-            <b> {{note.added_on}}</b>
-            {{ note.content|linebreaks }}
-            {% for tag in note.tags.all %}
-                {{ tag }} <br>
-            {% endfor %}
-            <br>
-            <hr>
-        {% endfor %}
-{% endif %}
+
+{% include 'notes/note_section.html' %}
 
 </div>
 {% endblock %}
