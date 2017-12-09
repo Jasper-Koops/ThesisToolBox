@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'analytical',
     'source_tracker',
     'person_tracker',
     'notes',
@@ -188,3 +189,5 @@ REST_FRAMEWORK = {
 
     )
 }
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-85972445-4'
