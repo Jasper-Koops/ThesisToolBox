@@ -23,16 +23,26 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = ('id', 'added_on', 'content', 'object_id', 'user')
 
 
+class TagSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer()
+    notes = NoteSerializer(many=True)
+
+    class Meta:
+        model = Tag
+        fields = ('id', 'added_on', 'name', 'notes', 'user')
+
 
 class PersonSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     notes = NoteSerializer(many=True)
+    tags = TagSerializer(many=True)
 
 
     class Meta:
         model = Person
         fields = (
-        'firstname', 'middlename', 'lastname', 'added_on', 'year_of_birth', 'year_of_death', 'branch', 'notes', 'user')
+        'firstname', 'middlename', 'lastname', 'added_on', 'year_of_birth', 'year_of_death', 'branch', 'notes', 'tags', 'user')
 
 
 
@@ -40,10 +50,11 @@ class BookSerializer(serializers.ModelSerializer):
 
     user = UserSerializer()
     notes = NoteSerializer(many=True)
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Book
-        fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user', 'notes')
+        fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user', 'notes', 'tags')
 
 
 class ReactBookSerializer(serializers.ModelSerializer):
@@ -58,10 +69,11 @@ class PamphletSerializer(serializers.ModelSerializer):
 
     user = UserSerializer()
     notes = NoteSerializer(many=True)
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Pamphlet
-        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'user')
+        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'tags', 'user')
 
 
 
@@ -69,10 +81,11 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     user = UserSerializer()
     notes = NoteSerializer(many=True)
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Article
-        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'user')
+        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'tags', 'user')
 
 
 

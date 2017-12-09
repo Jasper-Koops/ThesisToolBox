@@ -23,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu']
+if DEBUG == True:
+    ALLOWED_HOSTS = ['127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu']
 
 
 # Application definition
@@ -181,7 +184,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
 
     )
 }
