@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+<h1>Jeej NOTEOVERVIEWhome</h1>
+    <a href="{% url 'note_create' %}">create new</a>
+    {% for note in object_list %}
+    <ul>
+    <li><a href="{% url 'note_detail' pk=note.pk%}">{{note.name}}</a></li>
+    </ul>
+    {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% if  pamphlets %}
+        <h2>Pamphlets:</h2>
+        {% for pamphlet in pamphlets %}
+        <a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}">{{pamphlet.title}}</a>
+        <br>
+        author: {{ pamphlet.author }} -- {{ pamphlet.publication_date }}
+        <br>
+        <hr>
+        {% endfor %}
+{% endif %}

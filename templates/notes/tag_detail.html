@@ -15,65 +15,9 @@
 {% endif %}
 
 
-{% if books %}
-<h2>Books:</h2>
-    <ul>
-    {% for book in books %}
-        <li><a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a></li>
-    {% endfor %}
-    </ul>
-{% endif %}
+{% include 'source_tracker/lists/sourcelist.html' %}
 
-{% if alto_books %}
-{{ alto_books }}
-<h2>ALTOBooks:</h2>
-    <ul>
-    {% for book in alto_books.all %}
-        <li><a href="{% url 'book_detail' pk=book.pk %}">{{book.title}}</a></li>
-        {{book}}
-    {% endfor %}
-    </ul>
-{% endif %}
-
-{% if articles %}
-<h2>Articles:</h2>
-    <ul>
-    {% for article in articles %}
-        <li><a href="{% url 'article_detail' pk=article.pk %}">{{article.title}}</a></li>
-    {% endfor %}
-    </ul>
-{% endif %}
-
-{% if pamphlets %}
-<h2>Pamphlets:</h2>
-    <ul>
-    {% for pamphlet in pamphlets %}
-        <li><a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}">{{pamphlet.title}}</a></li>
-    {% endfor %}
-    </ul>
-{% endif %}
-
-{% if notes %}
-<h1>DOMME FOUT</h1>
-    {% for note in notes %}
-        <b>{{ note.added_on }}</b> <br>
-        <li>{{ note.content }}</li>
-        <br>
-        <hr>
-    {% endfor %}
-{% endif %}
-
-{% if object.notes %}
-        <h2>Notes:</h2>
-        <ul>
-        {% for note in object.notes.all %}
-            <b>{{ note.added_on }}</b> <br>
-            <li>{{ note.content }}</li>
-            <br>
-            <hr>
-        {% endfor %}
-        </ul>
-{% endif %}
+{% include 'notes/note_section.html' %}
 
 </div>
 {% endblock %}
