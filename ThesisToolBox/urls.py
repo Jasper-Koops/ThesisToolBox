@@ -25,9 +25,7 @@ router = routers.DefaultRouter()
 router.register(r'persons', PersonViewSet)
 router.register(r'notes', NoteViewSet)
 router.register(r'tags', TagViewSet)
-router.register(r'books', BookViewSet)
-router.register(r'articles', ArticleViewSet)
-router.register(r'pamphlets', PamphletViewSet)
+router.register(r'sources', SourceViewSet)
 router.register(r'users', UserViewSet)
 
 urlpatterns = [

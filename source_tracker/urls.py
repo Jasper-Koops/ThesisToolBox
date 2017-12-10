@@ -18,19 +18,10 @@ from .views import *
 
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),
-    url('^book-create/', BookCreate.as_view(), name='book_create'),
-    url('^react/', ReactBookCreate.as_view(), name='react_book_create'),
+    url('^source-create/', SourceCreate.as_view(), name='source_create'),
 
-    url('^books/(?P<pk>[0-9]+)/$', BookDetail.as_view(), name='book_detail'),
-    url('^books/(?P<pk>[0-9]+)/update/$', BookUpdate.as_view(), name='book_update'),
+    url('^sources/(?P<pk>[0-9]+)/$', SourceDetail.as_view(), name='source_detail'),
+    url('^sources/(?P<pk>[0-9]+)/update/$', SourceUpdate.as_view(), name='source_update'),
 
-    url('^pamphlet-create/', PamphletCreate.as_view(), name='pamphlet_create'),
-    url('^pamphlets/(?P<pk>[0-9]+)/$', PamphletDetail.as_view(), name='pamphlet_detail'),
-    url('^pamphlets/(?P<pk>[0-9]+)/update/$', PamphletUpdate.as_view(), name='pamphlet_update'),
-
-    url('^article-create/', ArticleCreate.as_view(), name='article_create'),
-    url('^articles/(?P<pk>[0-9]+)/$', ArticleDetail.as_view(), name='article_detail'),
-    url('^articles/(?P<pk>[0-9]+)/update/$', ArticleUpdate.as_view(), name='article_update'),
-
-    url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', SourceNoteAdd.as_view(), name='source_create_note'),
+       url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', SourceNoteAdd.as_view(), name='source_create_note'),
 ]

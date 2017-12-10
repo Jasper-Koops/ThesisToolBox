@@ -1,5 +1,5 @@
 from .serializers import *
-from source_tracker.models import Book, Pamphlet, Article
+from source_tracker.models import Source
 from notes.models import Note, Tag
 from person_tracker.models import Person
 from rest_framework import viewsets
@@ -18,19 +18,9 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
 
 
-class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all().order_by('-publication_date')
-    serializer_class = BookSerializer
-
-
-class ArticleViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all().order_by('-publication_date')
-    serializer_class = ArticleSerializer
-
-
-class PamphletViewSet(viewsets.ModelViewSet):
-    queryset = Pamphlet.objects.all().order_by('-publication_date')
-    serializer_class = PamphletSerializer
+class SourceViewSet(viewsets.ModelViewSet):
+    queryset = Source.objects.all().order_by('-publication_date')
+    serializer_class = SourceSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

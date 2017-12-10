@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from source_tracker.models import Book, Pamphlet, Article, ReactBook
+from source_tracker.models import Source
 from notes.models import Note, Tag
 from person_tracker.models import Person
 
@@ -46,47 +46,14 @@ class PersonSerializer(serializers.ModelSerializer):
 
 
 
-class BookSerializer(serializers.ModelSerializer):
+class SourceSerializer(serializers.ModelSerializer):
 
     user = UserSerializer()
     notes = NoteSerializer(many=True)
     tags = TagSerializer(many=True)
 
     class Meta:
-        model = Book
-        fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'publisher_name', 'publisher_city', 'user', 'notes', 'tags')
-
-
-class ReactBookSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ReactBook
-        fields = ('id', 'title', 'publication_date')
-
-
-
-class PamphletSerializer(serializers.ModelSerializer):
-
-    user = UserSerializer()
-    notes = NoteSerializer(many=True)
-    tags = TagSerializer(many=True)
-
-    class Meta:
-        model = Pamphlet
-        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'tags', 'user')
-
-
-
-class ArticleSerializer(serializers.ModelSerializer):
-
-    user = UserSerializer()
-    notes = NoteSerializer(many=True)
-    tags = TagSerializer(many=True)
-
-    class Meta:
-        model = Article
-        fields = ('title', 'author', 'publication_date', 'added_on', 'notes', 'tags', 'user')
-
-
+        model = Source
+        fields = ('id', 'title', 'publication_date', 'added_on', 'source_type', 'source_class', 'publisher_name', 'publisher_city', 'user', 'notes', 'tags')
 
 

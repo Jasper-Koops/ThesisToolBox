@@ -1,3 +1,14 @@
-{% include 'source_tracker/lists/booklist.html' %}
-{% include 'source_tracker/lists/articlelist.html' %}
-{% include 'source_tracker/lists/pamphletlist.html' %}
+{% if  sources %}
+        <h2>Sources:</h2>
+        {% for source in sources %}
+            <a href="{% url 'source_detail' pk=source.pk %}"><h3>{{source.title}}</h3></a>
+            <br>
+            author: {{ source.author }} -- {{ source.publication_date }}
+            <br>
+            Tags:
+            {% for tag in source.tags.all %}
+              <a href="{% url 'tag_detail' pk=tag.pk %}">{{tag}}</a>
+            {% endfor %}
+            <hr>
+        {% endfor %}
+{% endif %}
