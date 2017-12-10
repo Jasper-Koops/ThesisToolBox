@@ -1,35 +1,12 @@
-{% if object.book_tags.all %}
-    <h2>Books</h2>
-    {% for book in object.book_tags.all %}
-        <a href="{% url 'book_detail' pk=book.pk %}"><h3>{{ book.title }}</h3></a> <br>
-        {% for note in book.notes.all %}
-            <b> {{note.added_on}}</b>
-            {{ note.content|linebreaks }}
-            <hr>
-        {% endfor %}
+<h2>Sources:</h2>
+{% for key, set in notes.items %}
+    <a href="{% url 'source_detail' pk=set.0.id %}"><h2>{{set.0.title}}</h2></a>
+    <b>{{set.0.hashed_author.name}}</b><br>
+    {% for note in set|slice:"1:" %}
+        <b>{{ note.added_on }}</b>
+        {{ note.content|linebreaks}}
+        {%for tag in note.linked_tags%} | <a href="{% url 'tag_detail' pk=tag.id %}">{{tag.name}}</a> |   {% endfor %}
+        <hr>
     {% endfor %}
-{% endif %}
 
-{% if object.article_tags.all %}
-    <h2>Articles</h2>
-    {% for article in object.article_tags.all %}
-        <a href="{% url 'article_detail' pk=book.pk %}"><h3>{{ article.title }}</h3></a> <br>
-        {% for note in article.notes.all %}
-            <b> {{note.added_on}}</b>
-            {{ note.content|linebreaks }}
-            <hr>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
-
-{% if object.pamphlet_tags.all %}
-    <h2>Pamphlets</h2>
-    {% for pamphlet in object.pamphlet_tags.all %}
-        <a href="{% url 'pamphlet_detail' pk=pamphlet.pk %}"><h3>{{ pamphlet.title }}</h3></a> <br>
-        {% for note in article.notes.all %}
-            <b> {{note.added_on}}</b>
-            {{ note.content|linebreaks }}
-            <hr>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
+{% endfor %}

@@ -1,21 +1,10 @@
 from django.contrib import admin
-from source_tracker.models import Book, Pamphlet, Article, ReactBook
+from source_tracker.models import Source
 
 
-class BookAdmin(admin.ModelAdmin):
+class SourceAdmin(admin.ModelAdmin):
     pass
 
-class PamphletAdmin(admin.ModelAdmin):
-    pass
 
-class ArticleAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(Source, SourceAdmin)
 
-class ReactBookAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Book, BookAdmin)
-admin.site.register(Pamphlet, PamphletAdmin)
-admin.site.register(Article, ArticleAdmin)
-
-admin.site.register(ReactBook, ReactBookAdmin)

@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
 from notes.models import Note, Tag
 # Create your models here.
@@ -22,7 +23,7 @@ class Person(models.Model):
     firstname = models.CharField(max_length=255)
     middlename = models.CharField(max_length=255, blank=True)
     lastname = models.CharField(max_length=255)
-    added_on = models.DateField(auto_now=True)
+    added_on = models.DateTimeField(default=timezone.now, editable=True)
     year_of_birth = models.DateField()
     year_of_death = models.DateField(blank=True, null=True)
     nationality = models.ForeignKey(Nationality, blank=True, null=True)

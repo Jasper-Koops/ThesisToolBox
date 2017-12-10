@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
 <h1>Jeej DETAIL van {{ object.title }}</h1>
-<a href="{% url 'book_update' pk=object.pk %}">Update</a>
+<a href="{% url 'source_update' pk=object.pk %}">Update</a>
 <br>
 <h4>Tags:</h4>
 {% for tag in object.tags.all %}
@@ -10,7 +10,7 @@
 {% endfor %}
 <hr>
 
-<a href="{% url 'source_create_note' 'book' 'source_tracker' object.pk %}">create note</a>
+<a href="{% url 'source_create_note' 'source' 'source_tracker' object.pk %}">create note</a>
 
 {% include 'notes/source_note_section.html' %}
 

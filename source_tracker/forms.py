@@ -1,32 +1,12 @@
 from django.forms import ModelForm, SelectDateWidget
-from source_tracker.models import Book, Pamphlet, Article
+from source_tracker.models import Source
 
 
-class BookForm(ModelForm):
-
-    class Meta:
-        model = Book
-        fields = ['title', 'author', 'publication_date', 'publisher_name', 'publisher_city', 'source_type', 'tags']
-        widgets = {
-            'publication_date': SelectDateWidget(years=range(1800, 2020)),
-        }
-
-
-class PamphletForm(ModelForm):
+class SourceForm(ModelForm):
 
     class Meta:
-        model = Pamphlet
-        fields = ['title', 'author', 'publication_date', 'tags']
-        widgets = {
-            'publication_date': SelectDateWidget(years=range(1800, 2020)),
-        }
-
-
-class ArticleForm(ModelForm):
-
-    class Meta:
-        model = Article
-        fields = ['title', 'author', 'publication_date', 'tags']
+        model = Source
+        fields = ['title', 'author', 'publication_date', 'publisher_name', 'publisher_city', 'source_type', 'source_class', 'tags']
         widgets = {
             'publication_date': SelectDateWidget(years=range(1800, 2020)),
         }

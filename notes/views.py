@@ -1,11 +1,13 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.forms.models import model_to_dict
+from django.core import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import NoteForm
 from .models import Tag, Note
 
 from person_tracker.models import Person
-from source_tracker.models import Book, Article, Pamphlet
+from source_tracker.models import Source
 
 from django.apps import apps
 
@@ -48,12 +50,37 @@ class TagDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         data = super(TagDetail, self).get_context_data(**kwargs)
-        data['books'] = Book.objects.filter(tags__id=self.object.pk)
-        data['alto_books'] = self.object.book_tags
-        data['pamphlets'] = Pamphlet.objects.filter(tags__id=self.object.pk)
-        data['articles'] = Article.objects.filter(tags__id=self.object.pk)
-        data['persons'] = Person.objects.filter(tags__id=self.object.pk)
-        data['notes'] = Note.objects.filter(tags__id=self.object.pk)
+
+        returndict = {}
+        linked_Sources = Source.objects.filter(
+            tags__id=self.object.pk,
+            user=self.request.user
+        )
+
+        for source in linked_Sources:
+            hashed_source = model_to_dict(source)
+            hashed_source['hashed_author'] = {
+                'id': source.author.pk,
+                'name': source.author.full_name,
+            }
+            dict_list = [hashed_source]
+            notes = source.notes.filter(
+                tags__id=self.object.pk,
+                user=self.request.user
+            )
+            for note in notes:
+                tag_list = []
+                for tag in note.tags.all():
+                    tag_list.append({
+                        'id': tag.pk,
+                        'name': tag.name
+                    })
+                dict_model = model_to_dict(note)
+                dict_model['linked_tags'] = tag_list
+                dict_list.append(dict_model)
+            returndict[source] = dict_list
+
+        data['notes'] = returndict
         return data
 
 
