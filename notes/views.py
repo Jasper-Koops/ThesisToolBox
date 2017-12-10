@@ -1,10 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
-from django.forms.models import model_to_dict
-from django.core import serializers
+from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .utils import tag_dict_generator
-from .forms import NoteForm
 from .models import Tag, Note
 
 from person_tracker.models import Person
@@ -18,19 +16,31 @@ class TodoView(LoginRequiredMixin, TemplateView):
     login_url = '/login/'
     template_name = 'base/todo.html'
 
+
 class BaseNoteCreateView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
-    form_class = NoteForm
+    model = Note
+    fields = ['content', 'tags']
 
-    def get_form_kwargs(self):
-        kwargs = super(BaseNoteCreateView, self).get_form_kwargs()
-        kwargs['model'] = self.kwargs['model']
-        kwargs['app'] = self.kwargs['app']
-        kwargs['model_pk'] = self.kwargs['model_pk']
-        return kwargs
-
-    def form_valid(self, form):
+    def form_valid(self, form, *args, **kwargs):
         form.instance.user = self.request.user
+        self.model = self.kwargs['model']
+        self.app = self.kwargs['app']
+        print(self.app)
+        self.key = self.kwargs['model_pk']
+        self.model_object = apps.get_model(self.app, self.model)
+        self.linked_object = self.model_object.objects.get(pk=self.key)
+        form.instance.content_object = self.linked_object
+
+        #check if tag is in linked object tags
+        #Add tag if this is not the case.
+        tags = form.cleaned_data['tags']
+        for tag in tags:
+            if tag in self.linked_object.tags.all():
+                pass
+            else:
+                self.linked_object.tags.add(tag)
+
         return super().form_valid(form)
 
 
