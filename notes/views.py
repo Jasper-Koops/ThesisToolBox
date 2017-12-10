@@ -3,6 +3,7 @@ from django.forms.models import model_to_dict
 from django.core import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from .utils import tag_dict_generator
 from .forms import NoteForm
 from .models import Tag, Note
 
@@ -50,37 +51,13 @@ class TagDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         data = super(TagDetail, self).get_context_data(**kwargs)
-
-        returndict = {}
+        #Generate filtered dict with Sources as keys and the linked comments
+        #as values.
         linked_Sources = Source.objects.filter(
             tags__id=self.object.pk,
             user=self.request.user
         )
-
-        for source in linked_Sources:
-            hashed_source = model_to_dict(source)
-            hashed_source['hashed_author'] = {
-                'id': source.author.pk,
-                'name': source.author.full_name,
-            }
-            dict_list = [hashed_source]
-            notes = source.notes.filter(
-                tags__id=self.object.pk,
-                user=self.request.user
-            )
-            for note in notes:
-                tag_list = []
-                for tag in note.tags.all():
-                    tag_list.append({
-                        'id': tag.pk,
-                        'name': tag.name
-                    })
-                dict_model = model_to_dict(note)
-                dict_model['linked_tags'] = tag_list
-                dict_list.append(dict_model)
-            returndict[source] = dict_list
-
-        data['notes'] = returndict
+        data['notes'] = tag_dict_generator(linked_Sources, self)
         return data
 
 

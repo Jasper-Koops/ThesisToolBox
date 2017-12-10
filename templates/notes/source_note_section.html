@@ -1,8 +1,12 @@
-{% for tag in object.tags.all %}
-    <a href="{% url 'tag_detail' pk=tag.pk %}"><h3>{{ tag }}</h3></a> <br>
-    {% for note in tag.notes.all %}
-        <b> {{note.added_on}}</b>
-        {{ note.content|linebreaks }}
+<h2>Tags:</h2>
+{% for key, set in notes.items %}
+    <a href="{% url 'tag_detail' pk=set.0.id %}"><h2>{{set.0.name}}</h2></a>
+    {% for note in set|slice:"1:" %}
+        <b>{{ note.added_on }}</b>
+        {{ note.content|linebreaks}}
+        {%for tag in note.linked_tags%} | <a href="{% url 'tag_detail' pk=tag.id %}">{{tag.name}}</a> |   {% endfor %}
         <hr>
     {% endfor %}
+
 {% endfor %}
+

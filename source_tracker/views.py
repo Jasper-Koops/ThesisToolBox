@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from source_tracker.models import Source
 from source_tracker.forms import SourceForm
 from notes.views import BaseNoteCreateView
+from notes.utils import source_dict_generator
 
 # Create your views here.
 
@@ -45,13 +46,12 @@ class SourceDetail(LoginRequiredMixin, DetailView):
     model = Source
     template_name = 'source_tracker/detail_views/source_detail.html'
 
-    # def get_context_data(self, **kwargs):
-    #     data = super(Book, self).get_context_data(**kwargs)
-    #     data['books'] = Book.objects.filter(user=self.request.user)
-    #     data['pamphlets'] = Pamphlet.objects.filter(user=self.request.user)
-    #     data['articles'] = Article.objects.filter(user=self.request.user)
-    #     return data
-
+    #Return a dict with the tag and its linked sources.
+    def get_context_data(self, **kwargs):
+        data = super(SourceDetail, self).get_context_data(**kwargs)
+        linked_Tags = self.object.tags.filter(user=self.request.user)
+        data['notes'] = source_dict_generator(linked_Tags, self)
+        return data
 
 
 class BookNoteAdd(BaseNoteCreateView):
