@@ -18,10 +18,10 @@ from .views import *
 
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),
-    url('^source-create/', SourceCreate.as_view(), name='source_create'),
+    url('^create/', SourceCreate.as_view(), name='source_create'),
 
-    url('^sources/(?P<pk>[0-9]+)/$', SourceDetail.as_view(), name='source_detail'),
-    url('^sources/(?P<pk>[0-9]+)/update/$', SourceUpdate.as_view(), name='source_update'),
+    url('^(?P<pk>[0-9]+)/$', SourceDetail.as_view(), name='source_detail'),
+    url('^(?P<pk>[0-9]+)/update/$', SourceUpdate.as_view(), name='source_update'),
 
        url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', SourceNoteAdd.as_view(), name='source_create_note'),
 ]
