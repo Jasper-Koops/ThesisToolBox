@@ -24,7 +24,7 @@ class Person(models.Model):
     middlename = models.CharField(max_length=255, blank=True)
     lastname = models.CharField(max_length=255)
     added_on = models.DateTimeField(default=timezone.now, editable=True)
-    year_of_birth = models.DateField()
+    year_of_birth = models.DateField(blank=True, null=True)
     year_of_death = models.DateField(blank=True, null=True)
     nationality = models.ForeignKey(Nationality, blank=True, null=True)
     branch = models.CharField(max_length=255)
