@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
-from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .utils import tag_dict_generator
