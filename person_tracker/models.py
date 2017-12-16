@@ -31,10 +31,11 @@ class Person(models.Model):
     notes = GenericRelation(Note, null=True, blank=True, related_query_name='notes')
     tags = models.ManyToManyField(Tag, blank=True, related_name='person_tags')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    historian = models.BooleanField(default=False)
 
     @property
     def full_name(self):
         return self.firstname + " " + self.middlename + " " + self.lastname
 
     def __str__(self):
-        return self.firstname + " " + self.middlename + " " + self.lastname
+        return self.full_name
