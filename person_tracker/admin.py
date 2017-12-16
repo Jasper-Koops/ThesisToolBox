@@ -6,7 +6,11 @@ class NationalityAdmin(admin.ModelAdmin):
     pass
 
 class PersonAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['full_name', 'nationality', 'branch']
+
+    def full_name(self, obj):
+        return obj.full_name
+    list_filter = ['historian']
 
 admin.site.register(Nationality, NationalityAdmin)
 admin.site.register(Person, PersonAdmin)

@@ -3,7 +3,8 @@ from notes.models import Note, Tag
 # Register your models here.
 
 class NoteAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ['tags']
+
 
 class TagAdmin(admin.ModelAdmin):
     pass
