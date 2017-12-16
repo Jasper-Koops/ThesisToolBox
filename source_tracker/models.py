@@ -10,6 +10,9 @@ class Publisher(models.Model):
     city = models.CharField(max_length=255)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
+    def __str__(self):
+        return self.name
+
 
 class Source(models.Model):
     SOURCE_TYPE_CHOICES = (
@@ -33,3 +36,6 @@ class Source(models.Model):
     notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
     tags = models.ManyToManyField(Tag, blank=True, related_name='source_tags')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    def __str__(self):
+        return self.title
