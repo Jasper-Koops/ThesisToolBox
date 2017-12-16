@@ -36,6 +36,7 @@ class Source(models.Model):
     notes = GenericRelation(Note, blank=True, null=True, related_name='notes')
     tags = models.ManyToManyField(Tag, blank=True, related_name='source_tags')
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    read = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
