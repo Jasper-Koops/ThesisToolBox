@@ -42,7 +42,7 @@ class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = (
-        'firstname', 'middlename', 'lastname', 'added_on', 'year_of_birth', 'year_of_death', 'branch', 'notes', 'tags', 'user')
+        'firstname', 'middlename', 'lastname', 'added_on', 'year_of_birth', 'year_of_death', 'branch', 'historian', 'notes', 'tags', 'user')
 
 
 
