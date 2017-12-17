@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
 from django.db import models
+from tinymce import models as tinymce_models
 
 
 class Tag(models.Model):
@@ -17,7 +18,7 @@ class Tag(models.Model):
 
 class Note(models.Model):
     added_on = models.DateTimeField(default=timezone.now, editable=True)
-    content = models.TextField()
+    content = tinymce_models.HTMLField()
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')

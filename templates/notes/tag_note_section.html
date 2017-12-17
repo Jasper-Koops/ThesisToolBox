@@ -4,7 +4,7 @@
     <b>{{set.0.hashed_author.name}}</b><br>
     {% for note in set|slice:"1:" %}
         <b>{{ note.added_on }}</b>
-        {{ note.content|linebreaks}}
+        {{ note.content|safe}}
         {%for tag in note.linked_tags%} | <a href="{% url 'tag_detail' pk=tag.id %}">{{tag.name}}</a> |   {% endfor %}
         <hr>
     {% endfor %}

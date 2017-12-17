@@ -1,9 +1,15 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% block head %}
+<script src="{% static 'js/tinymce/tinymce.min.js' %}" /></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+{{ form.media }}
+{% endblock %}
 {% block content %}
 <div class="container">
-<form method="post">{% csrf_token %}
+<form method="post">
+{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit" />
 </form>
 </div>
 {% endblock %}
