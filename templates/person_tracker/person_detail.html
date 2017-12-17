@@ -2,6 +2,7 @@
     {% block content %}
     <div class="container">
     <h1>DETAIL VAN {{object.full_name}}</h1>
+    <a href="{% url 'person_update' pk=object.pk %}">Update</a>
     <a href="{% url 'person_create_note' 'person' 'person_tracker' object.pk %}">create note</a>
 
     {% include 'notes/own_notes_section.html'%}

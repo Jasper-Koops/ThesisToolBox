@@ -17,9 +17,9 @@ from django.conf.urls import url
 from .views import *
 
 urlpatterns = [
-    url('^$', Home.as_view(), name='person_tracker_home'),
-    url('^persons/$', PersonOverview.as_view(), name='person_overview'),
-    url('^persons/(?P<pk>[0-9]+)/$', PersonDetail.as_view(), name='person_detail'),
+    url('^$', Home.as_view(), name='person_overview'),
+    url('^(?P<pk>[0-9]+)/$', PersonDetail.as_view(), name='person_detail'),
+    url('^(?P<pk>[0-9]+)/update/$', PersonUpdate.as_view(), name='person_update'),
     url('^add-person/', PersonCreate.as_view(), name='person_create'),
     url('^add-nationality/', NationalityCreate.as_view(), name='nationality_create'),
     url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', PersonNoteAdd.as_view(), name='person_create_note'),
