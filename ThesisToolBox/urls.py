@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^$', Index.as_view(), name='index'),
     url('^sources/', include('source_tracker.urls')),
-    url('^person/', include('person_tracker.urls')),
+    url('^persons/', include('person_tracker.urls')),
     url('^notes/', include('notes.urls')),
 
     url(r'^login/$', auth_views.login, name='login'),
