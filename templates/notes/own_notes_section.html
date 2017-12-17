@@ -1,0 +1,12 @@
+{% if object.notes %}
+    <h2>General Notes:</h2>
+    {% for note in object.notes.all %}
+        <b> {{note.added_on}}</b>
+        {{ note.content|linebreaks }}
+        {% for tag in note.linked_tags.all %}
+            | <a href="{% url 'tag_detail' pk=tag.pk %}">{{ tag }}</a> | <br>
+        {% endfor %}
+        <br>
+        <hr>
+    {% endfor %}
+{% endif %}
