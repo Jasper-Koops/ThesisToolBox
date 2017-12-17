@@ -3,7 +3,7 @@
     <a href="{% url 'tag_detail' pk=set.0.id %}"><h2>{{set.0.name}}</h2></a>
     {% for note in set|slice:"1:" %}
         <b>{{ note.added_on }}</b>
-        {{ note.content|linebreaks}}
+        {{ note.content|safe}}
         {%for tag in note.linked_tags%} | <a href="{% url 'tag_detail' pk=tag.id %}">{{tag.name}}</a> |   {% endfor %}
         <hr>
     {% endfor %}

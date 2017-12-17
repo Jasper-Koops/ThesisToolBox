@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     'analytical',
     'source_tracker',
     'person_tracker',
     'notes',
-    'webpack_loader',
     'rest_framework',
     'rest_api',
 ]
@@ -137,11 +137,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
-#    os.path.join(BASE_DIR, 'assets'),
-#)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = (
+   os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/')
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -191,3 +190,18 @@ REST_FRAMEWORK = {
 }
 
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-85972445-4'
+
+
+
+TINYMCE_DEFAULT_CONFIG = {
+        'selector': 'textarea',
+        'theme': 'modern',
+        'plugins': 'link image preview codesample contextmenu table code lists save fullscreen',
+        'toolbar1': 'bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table | link image | codesample | preview code | fullscreen | save',
+        'contextmenu': 'formats | link image',
+        'menubar': True,
+        'inline': False,
+        'statusbar': True,
+        'height': 360,
+        }
+
