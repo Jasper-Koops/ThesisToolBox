@@ -12,6 +12,7 @@
 
 <a href="{% url 'source_create_note' 'source' 'source_tracker' object.pk %}">create note</a>
 
+{% include 'notes/own_notes_section.html'%}
 {% include 'notes/source_note_section.html' %}
 
 </div>
