@@ -34,11 +34,17 @@ class BaseNoteCreateView(LoginRequiredMixin, CreateView):
         #check if tag is in linked object tags
         #Add tag if this is not the case.
         tags = form.cleaned_data['tags']
-        for tag in tags:
-            if tag in self.linked_object.tags.all():
-                pass
-            else:
-                self.linked_object.tags.add(tag)
+
+        #Tag objects cannot have tags, so skipp this part if the 'linked_object'
+        #is a tag.
+        if self.linked_object.__class__.__name__ == 'Tag':
+            pass
+        else:
+            for tag in tags:
+                if tag in self.linked_object.tags.all():
+                    pass
+                else:
+                    self.linked_object.tags.add(tag)
 
         return super().form_valid(form)
 
