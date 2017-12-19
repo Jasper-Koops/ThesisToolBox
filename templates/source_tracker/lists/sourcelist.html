@@ -1,5 +1,4 @@
 {% if  sources %}
-        <h2>Sources:</h2>
         {% for source in sources %}
             <a href="{% url 'source_detail' pk=source.pk %}"><h3>{{source.title}}</h3></a>
             <br>
