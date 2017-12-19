@@ -1,12 +1,12 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <div class="container">
-<h1>Jeej DETAIL van {{ object.title }}</h1>
+<h1>{{ object.title }} - Source Detail</h1>
 <a href="{% url 'source_update' pk=object.pk %}">Update</a>
 <br>
 <h4>Tags:</h4>
 {% for tag in object.tags.all %}
-    <a href="{% url 'tag_detail' pk=tag.pk %}">{{tag}}</a>
+    <a href="{% url 'tag_detail' pk=tag.pk %}">| {{tag}} |</a>
 {% endfor %}
 <hr>
 

@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
     {% block content %}
     <div class="container">
-    <h1>DETAIL VAN {{object.full_name}}</h1>
+    <h1>{{object.full_name}} - Person Detail</h1>
     <a href="{% url 'person_update' pk=object.pk %}">Update</a>
     <a href="{% url 'person_create_note' 'person' 'person_tracker' object.pk %}">create note</a>
 
