@@ -1,0 +1,5 @@
+#!/bin/bash
+echo 'restarting gunicorn...'
+sudo systemctl restart gunicorn
+echo 'done!'
+
