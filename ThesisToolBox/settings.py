@@ -28,7 +28,7 @@ DEBUG = False
 if DEBUG == True:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu']
+    ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu', 'americanstudies.nu', 'www.americanstudies.nu']
 
 
 # Application definition
