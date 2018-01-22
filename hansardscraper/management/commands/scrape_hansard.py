@@ -99,17 +99,30 @@ class Command(BaseCommand):
 
                     #generate debate url list
                     debate_links = []
-                    for link in html.find_all('span', {'class': [['minor-section', 'major-section']]}):
-                        debate_links.append(base_url + link.a.attrs['href'].strip())
+                    prev_url = ''
+                    header_title = ''
+                    for link in html.find_all('li', {'class': ['section-line']}):
+                        # check if its just an header
+                        headerobject = link.find('span', {'class': 'blank-section'})
+                        if headerobject:
+                            header_title = headerobject.a.text.strip() + ' '
+                        else:
+                            # Get title and url, add to list
+                            title = header_title + link.a.text.strip()
+                            url = base_url + link.a.attrs['href'].strip()
+                            if url != prev_url:
+                                debate_links.append((title, url))
+
 
                     for link in debate_links:
-                        title = link.split('/')[-1].replace('-', ' ').capitalize()
+                        title = link[0]
+                        url = link[1]
 
                         #Check if debate object already exists, create if not
                         try:
                             debate_object = Debate.objects.get(
                                 session=session_object,
-                                url=link,
+                                url=url,
                                 title=title
                             )
                             pass
@@ -117,7 +130,7 @@ class Command(BaseCommand):
 
                             debate_object = Debate.objects.create(
                                 session=session_object,
-                                url=link,
+                                url=url,
                                 title=title
                             )
 
