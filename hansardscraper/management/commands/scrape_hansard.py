@@ -135,7 +135,7 @@ class Command(BaseCommand):
                             )
 
                         #Get HTML
-                        html = self.get_html(link)
+                        html = self.get_html(link[1])
                         #Parse over BlockQuotes and create objects for each
 
                         blockquotes = html.select('.member_contribution')
