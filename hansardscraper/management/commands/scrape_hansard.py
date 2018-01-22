@@ -67,6 +67,7 @@ class Command(BaseCommand):
                 break
 
             url = object.url
+            object_url = object.url
             time.sleep(random.randint(20,86))
 
             self.stdout.write(self.style.SUCCESS('Scraping %s') % url)
@@ -163,7 +164,7 @@ class Command(BaseCommand):
 
             #All debates have been scraped, or the page was a 404, check URL object.
             print(url)
-            url_object = URL.objects.get(url=url)
+            url_object = URL.objects.get(url=object_url)
             url_object.checked = True
             url_object.save()
             counter +=1
