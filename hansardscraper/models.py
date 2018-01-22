@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class URL(models.Model):
     url = models.URLField()
     checked = models.BooleanField(default=False)
@@ -24,14 +25,17 @@ class Session(models.Model):
 
 
 class Debate(models.Model):
-    session = models.ForeignKey(Session)
+    session = models.ForeignKey(Session, related_name='debates')
     title = models.CharField(max_length=400)
     url = models.URLField()
 
+    def __str__(self):
+        return self.title
+
 
 class BlockQuote(models.Model):
-    debate = models.ForeignKey(Debate)
-    speaker = models.ForeignKey(Speaker)
+    debate = models.ForeignKey(Debate, related_name='quotes')
+    speaker = models.ForeignKey(Speaker, related_name='quotes')
     text = models.TextField()
 
 

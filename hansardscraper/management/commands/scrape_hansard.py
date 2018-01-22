@@ -145,7 +145,7 @@ class Command(BaseCommand):
                                 speaker = Speaker.objects.create(name=author_name, url=authorurl)
 
 
-                            BlockQuote.objects.create(speaker=speaker, text=quote.text, debate=debate_object)
+                            BlockQuote.objects.create(speaker=speaker, text=quote.text.strip(), debate=debate_object)
 
 
             #All debates have been scraped, or the page was a 404, check URL object.
