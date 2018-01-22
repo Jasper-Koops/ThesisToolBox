@@ -116,13 +116,13 @@ class Command(BaseCommand):
 
                     for link in debate_links:
                         title = link[0]
-                        url = link[1]
+                        debate_url = link[1]
 
                         #Check if debate object already exists, create if not
                         try:
                             debate_object = Debate.objects.get(
                                 session=session_object,
-                                url=url,
+                                url=debate_url,
                                 title=title
                             )
                             pass
@@ -130,7 +130,7 @@ class Command(BaseCommand):
 
                             debate_object = Debate.objects.create(
                                 session=session_object,
-                                url=url,
+                                url=debate_url,
                                 title=title
                             )
 
