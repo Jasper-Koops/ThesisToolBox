@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 break
 
             url = object.url
-            time.sleep(random.randint(1,10))
+            time.sleep(random.randint(20,86))
 
             self.stdout.write(self.style.SUCCESS('Scraping %s') % url)
 
