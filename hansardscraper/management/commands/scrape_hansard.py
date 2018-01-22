@@ -162,6 +162,7 @@ class Command(BaseCommand):
 
 
             #All debates have been scraped, or the page was a 404, check URL object.
+            print(url)
             url_object = URL.objects.get(url=url)
             url_object.checked = True
             url_object.save()
