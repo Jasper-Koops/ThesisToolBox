@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'person_tracker',
     'notes',
     'rest_framework',
+    'hansardscraper',
     'rest_api',
 ]
 
