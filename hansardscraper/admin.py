@@ -25,7 +25,7 @@ class DebateAdmin(admin.ModelAdmin):
 class BlockQuoteAdmin(admin.ModelAdmin):
     list_display = ['speaker', 'debate']
     raw_id_fields = ['speaker', 'debate']
-    search_fields = ['speaker__name', 'debate__title']
+    search_fields = ['speaker__name', 'debate__title', 'text']
 
 
 admin.site.register(URL, URLAdmin)
