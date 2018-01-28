@@ -32,6 +32,11 @@ class SearchQueryAdmin(admin.ModelAdmin):
     list_display = ['query', 'date']
     search_fields = ['query']
 
+class QueryParamAdmin(admin.ModelAdmin):
+    list_display = ['query', 'quote', 'matches', 'created']
+    search_fields = ['query', 'quote']
+    list_filter = ['query']
+
 
 admin.site.register(URL, URLAdmin)
 admin.site.register(Speaker, SpeakerAdmin)
@@ -39,3 +44,4 @@ admin.site.register(Session, SessionAdmin)
 admin.site.register(Debate, DebateAdmin)
 admin.site.register(BlockQuote, BlockQuoteAdmin)
 admin.site.register(SearchQuery, SearchQueryAdmin)
+admin.site.register(QueryParams, QueryParamAdmin)
