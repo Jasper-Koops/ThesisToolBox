@@ -28,8 +28,14 @@ class BlockQuoteAdmin(admin.ModelAdmin):
     search_fields = ['speaker__name', 'debate__title', 'text']
 
 
+class SearchQueryAdmin(admin.ModelAdmin):
+    list_display = ['query', 'date']
+    search_fields = ['query']
+
+
 admin.site.register(URL, URLAdmin)
 admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Session, SessionAdmin)
 admin.site.register(Debate, DebateAdmin)
 admin.site.register(BlockQuote, BlockQuoteAdmin)
+admin.site.register(SearchQuery, SearchQueryAdmin)

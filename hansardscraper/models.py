@@ -41,9 +41,8 @@ class BlockQuote(models.Model):
 
 class SearchQuery(models.Model):
     query = models.CharField(max_length=200)
-    quotes = models.ManyToManyField(BlockQuote, blank=True, null=True)
-    date = models.DateTimeField()
-
+    results = models.ManyToManyField(BlockQuote, through='QueryParams', blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
     finished = models.BooleanField(default=False)
 
     def __str__(self):
@@ -63,6 +62,12 @@ class SearchQuery(models.Model):
     #     #This will most lickely crash
     #     return self.quotes.debate.distinct()
 
+#
+class QueryParams(models.Model):
+    quote = models.ForeignKey(BlockQuote)
+    query = models.ForeignKey(SearchQuery)
+    matches = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
 
 
 
