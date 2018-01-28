@@ -19,7 +19,7 @@ class Command(BaseCommand):
         search_query = SearchQuery.objects.create(query=query)
         set = BlockQuote.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
         for result in set:
-            param = QueryParams.objects.create(quote=result, query=query)
+            param = QueryParams.objects.create(quote=result, query=search_query)
             param.save()
         # search_query.results=set
         # search_query.finished=True
