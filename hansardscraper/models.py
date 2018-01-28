@@ -39,3 +39,30 @@ class BlockQuote(models.Model):
     text = models.TextField()
 
 
+class SearchQuery(models.Model):
+    query = models.CharField(max_length=200)
+    quotes = models.ManyToManyField(BlockQuote, blank=True, null=True)
+    date = models.DateTimeField()
+
+    finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.query
+
+    # @property
+    # def get_debates(self):
+    #     """
+    #     This might be very slow!
+    #     """
+    #     # debate_list = []
+    #     # for quote in self.quotes.all():
+    #     #     if quote.debate not in debate_list:
+    #     #         debate_list.append(quote.debate)
+    #     # return debate_list
+    #
+    #     #This will most lickely crash
+    #     return self.quotes.debate.distinct()
+
+
+
+
