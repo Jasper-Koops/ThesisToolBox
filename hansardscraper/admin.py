@@ -8,6 +8,7 @@ class URLAdmin(admin.ModelAdmin):
 
 class SpeakerAdmin(admin.ModelAdmin):
     list_display = ['name', 'url']
+    search_fields = ['name']
 
 
 class SessionAdmin(admin.ModelAdmin):
@@ -17,10 +18,14 @@ class SessionAdmin(admin.ModelAdmin):
 
 class DebateAdmin(admin.ModelAdmin):
     list_display = ['title', 'session', 'url']
+    raw_id_fields = ['session']
+    search_fields = ['title']
 
 
 class BlockQuoteAdmin(admin.ModelAdmin):
     list_display = ['speaker', 'debate']
+    raw_id_fields = ['speaker', 'debate']
+    search_fields = ['speaker__name', 'debate__title']
 
 
 admin.site.register(URL, URLAdmin)
