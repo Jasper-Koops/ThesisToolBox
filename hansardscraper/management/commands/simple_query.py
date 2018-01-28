@@ -13,17 +13,14 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Starting search operation'))
-        search_query = SearchQuery.objects.create(query=query)
-
         vector = SearchVector('text')
         query = options['query'][0]
+        self.stdout.write(self.style.SUCCESS('Starting search operation'))
+        search_query = SearchQuery.objects.create(query=query)
         set = BlockQuote.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
-
         search_query.results=set
         search_query.finished=True
         search_query.save()
-
         self.stdout.write(self.style.SUCCESS('Finished!'))
 
 
