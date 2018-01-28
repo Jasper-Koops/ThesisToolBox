@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.postgres.search import TrigramSimilarity, SearchQuery, SearchRank, SearchVector
-from hansardscraper.models import URL, Session, Debate, BlockQuote, Speaker, SearchQuery
+from hansardscraper.models import URL, Session, Debate, BlockQuote, Speaker, SearchQuery, QueryParams
 
 
 class Command(BaseCommand):
@@ -18,9 +18,12 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Starting search operation'))
         search_query = SearchQuery.objects.create(query=query)
         set = BlockQuote.objects.annotate(rank=SearchRank(vector, query)).order_by('-rank')
-        search_query.results=set
-        search_query.finished=True
-        search_query.save()
+        for result in set:
+            param = QueryParams.objects.create(quote=result, query=query)
+            param.save()
+        # search_query.results=set
+        # search_query.finished=True
+        # search_query.save()
         self.stdout.write(self.style.SUCCESS('Finished!'))
 
 

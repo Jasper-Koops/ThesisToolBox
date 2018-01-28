@@ -66,7 +66,7 @@ class SearchQuery(models.Model):
 class QueryParams(models.Model):
     quote = models.ForeignKey(BlockQuote)
     query = models.ForeignKey(SearchQuery)
-    matches = models.IntegerField()
+    matches = models.IntegerField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
 
