@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG == True:
     ALLOWED_HOSTS = ['127.0.0.1']
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
+    'raven.contrib.django.raven_compat',
     'tinymce',
     'analytical',
     'source_tracker',
@@ -194,3 +197,6 @@ TINYMCE_DEFAULT_CONFIG = {
         'height': 360,
         }
 
+RAVEN_CONFIG = {
+    'dsn': 'https://5a821e7dbeea4344a52f76db412063b9:ac5809eb2ff543eb89952bc28700e5fb@sentry.io/283289',
+}
