@@ -1,9 +1,9 @@
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .utils import tag_dict_generator
 from .models import Tag, Note
-
+from django.http import HttpResponseRedirect
 from person_tracker.models import Person
 from source_tracker.models import Source
 
@@ -47,6 +47,17 @@ class BaseNoteCreateView(LoginRequiredMixin, CreateView):
                     self.linked_object.tags.add(tag)
 
         return super().form_valid(form)
+
+
+class NoteUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    model = Note
+    fields = ['content', 'tags']
+    template_name = "base/generic_form.html"
+
+
+    def get_success_url(self):
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
 
 
 class TagOverview(LoginRequiredMixin, ListView):
