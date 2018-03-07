@@ -2,6 +2,7 @@
     <h2>General Notes:</h2>
     {% for note in object.notes.all %}
         <b> {{note.added_on}}</b>
+        <a href="{% url 'tag_note_update' pk=note.id %}">Edit</a>
         {{ note.content|safe }}
         {% for tag in note.tags.all %}
             | <a href="{% url 'tag_detail' pk=tag.pk %}">{{ tag }}</a> | <br>

@@ -25,6 +25,8 @@ urlpatterns = [
 
     url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', TagNoteAdd.as_view(), name='tag_create_note'),
 
+    url('^update_note/(?P<pk>[0-9]+)/$', NoteUpdateView.as_view(), name='tag_note_update'),
+
 ]
 
 
