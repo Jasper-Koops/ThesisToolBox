@@ -54,10 +54,7 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
     fields = ['content', 'tags']
     template_name = "base/generic_form.html"
-
-
-    def get_success_url(self):
-        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER', '/'))
+    success_url = reverse_lazy('tag_overview')
 
 
 class TagOverview(LoginRequiredMixin, ListView):
