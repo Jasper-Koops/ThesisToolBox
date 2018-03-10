@@ -1,25 +1,33 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <div class="container">
-<h1>Jeej de index pagina Jeej</h1>
-<p>Toon laatste X berichten, tags en boeken enzo</p>
-<p>Person objecten zijn nog niet editbaar</p>
-<p>De layout is overal nog superkut</p>
+    <div class="row">
+        <div class="col-6 mx-auto">
+
+            <h1 align="center">Index</h1>
+            <p align="center">Mijn kamer is nog beter ingericht dan deze website</p>
+
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-md">
-        <h2>Sources</h2>
-        <p>Sorteer onder by type, of gewoon list?</p>
+        <h2>Tags</h2>
+        <p>Recente tags</p>
         <hr>
+        {% for tag in tags %}
+        <a href="{% url 'notes:tag_detail' pk=tag.pk %}">{{ tag.name }}</a><hr>
+        {% endfor %}
 
         </div>
 
         <div class="col-md">
-        <h2>Recent Messages:</h2>
-        <p>Klik op note zodat je naar het 'genote' object gaat <-- als in, fix dit</p>
+        <h2>Recent Notes:</h2>
         <hr>
         {% for note in notes %}
-        {{ note.content|linebreaks }}<hr>
+        <b><a href="{% url 'notes:note-detail' pk=note.pk%}">{{ note.added_on }}</a></b>
+        {{ note.content|safe }}<hr>
 
         {% endfor %}
 
