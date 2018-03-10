@@ -23,7 +23,7 @@ class SourceCreate(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     form_class = SourceForm
     template_name = "source_tracker/source_create.html"
-    success_url = reverse_lazy('source_tracker_home')
+    success_url = reverse_lazy('sourcetracker:source_tracker_home')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -38,7 +38,7 @@ class SourceUpdate(LoginRequiredMixin, UpdateView):
     model = Source
     form_class = SourceForm
     template_name = 'base/generic_form.html'
-    success_url = reverse_lazy('source_tracker_home')
+    success_url = reverse_lazy('sourcetracker:source_tracker_home')
 
 
 class SourceDetail(LoginRequiredMixin, DetailView):
@@ -60,4 +60,4 @@ class BookNoteAdd(BaseNoteCreateView):
 
 class SourceNoteAdd(BaseNoteCreateView):
     template_name = "base/generic_form.html"
-    success_url = reverse_lazy('source_tracker_home')
+    success_url = reverse_lazy('sourcetracker:source_tracker_home')

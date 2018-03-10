@@ -3,13 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .utils import tag_dict_generator
 from .models import Tag, Note
-from django.http import HttpResponseRedirect
-from person_tracker.models import Person
 from source_tracker.models import Source
-
 from django.apps import apps
 
-# Create your views here.
 
 class TodoView(LoginRequiredMixin, TemplateView):
     login_url = '/login/'
@@ -53,7 +49,7 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
     fields = ['content', 'tags']
     template_name = "base/generic_form.html"
-    success_url = reverse_lazy('tag_overview')
+    success_url = reverse_lazy('notes:tag_overview')
 
 
 class TagOverview(LoginRequiredMixin, ListView):
@@ -94,7 +90,7 @@ class TagCreate(LoginRequiredMixin, CreateView):
     model = Tag
     template_name = 'base/generic_form.html'
     fields = ['name']
-    success_url = reverse_lazy('tag_overview')
+    success_url = reverse_lazy('notes:tag_overview')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -103,4 +99,4 @@ class TagCreate(LoginRequiredMixin, CreateView):
 
 class TagNoteAdd(BaseNoteCreateView):
     template_name = "base/generic_form.html"
-    success_url = reverse_lazy('tag_overview')
+    success_url = reverse_lazy('notes:tag_overview')
