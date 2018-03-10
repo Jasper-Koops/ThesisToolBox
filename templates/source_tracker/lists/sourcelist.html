@@ -1,12 +1,12 @@
 {% if  sources %}
         {% for source in sources %}
-            <a href="{% url 'source_detail' pk=source.pk %}"><h3>{{source.title}}</h3></a>
+            <a href="{% url 'sourcetracker:source_detail' pk=source.pk %}"><h3>{{source.title}}</h3></a>
             <br>
             author: {{ source.author }} -- {{ source.publication_date }}
             <br>
             Tags:
             {% for tag in source.tags.all %}
-              <a href="{% url 'tag_detail' pk=tag.pk %}">{{tag}}</a>
+              <a href="{% url 'notes:tag_detail' pk=tag.pk %}">{{tag}}</a>
             {% endfor %}
             <hr>
         {% endfor %}

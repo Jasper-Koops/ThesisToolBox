@@ -2,13 +2,13 @@
 {% block content %}
 <div class="container">
 <h1>{{ object.name }} - Tag Detail</h1>
-<a href="{% url 'tag_create_note' 'tag' 'notes' object.pk %}">create note</a>
+<a href="{% url 'notes:tag_create_note' 'tag' 'notes' object.pk %}">create note</a>
 
 {% if persons %}
 <h2>Persons:</h2>
     <ul>
     {% for person in persons %}
-        <li><a href="{% url 'person_detail' pk=person.pk %}">{{person.full_name}}</a></li>
+        <li><a href="{% url 'persontracker:person_detail' pk=person.pk %}">{{person.full_name}}</a></li>
     {% endfor %}
     </ul>
 {% endif %}

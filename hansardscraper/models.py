@@ -42,7 +42,8 @@ class BlockQuote(models.Model):
 class SearchQuery(models.Model):
     query = models.CharField(max_length=200)
     results = models.ManyToManyField(BlockQuote, through='QueryParams', blank=True, null=True)
-    date = models.DateTimeField(auto_now_add=True)
+    started = models.DateTimeField(auto_now_add=True)
+    completed = models.DateTimeField(blank=True, null=True)
     finished = models.BooleanField(default=False)
 
     def __str__(self):
