@@ -24,6 +24,7 @@ urlpatterns = [
     url('^todo/$', TodoView.as_view(), name='todo'),
 
     url('^create_note/(?P<model>[a-zA-Z]+)/(?P<app>[a-zA-Z_]+)/(?P<model_pk>[0-9]+)/$', TagNoteAdd.as_view(), name='tag_create_note'),
+    url('(?P<pk>[0-9]+)/$', NoteDetail.as_view(), name='note-detail'),
 
     url('^update_note/(?P<pk>[0-9]+)/$', NoteUpdateView.as_view(), name='tag_note_update'),
 

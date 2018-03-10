@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+<h1>Note Detail</h1>
+<a href="{% url 'notes:tag_note_update' pk=object.pk %}">Edit</a>
+    <b> {{object.added_on}}</b>
+    {{ object.content|safe }}
+    <hr>
+    <h4>Tags:</h4>
+    <hr>
+    {% for tag in note.tags.all %}
+        <a href="{% url 'notes:tag_detail' pk=tag.pk %}">{{ tag }}</a> <br>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -83,6 +83,12 @@ class TagDetail(LoginRequiredMixin, DetailView):
         return data
 
 
+class NoteDetail(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
+    model = Note
+    template_name = 'notes/note_detail.html'
+
+
 class TagCreate(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     model = Tag
