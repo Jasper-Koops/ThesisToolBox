@@ -2,12 +2,12 @@
 {% block content %}
 <div class="container">
 <h1>Persons</h1>
-    <a href="{% url 'person_create' %}">Add person</a>
-    <a href="{% url 'nationality_create' %}">Add nationality</a>
+    <a href="{% url 'persontracker:person_create' %}">Add person</a>
+    <a href="{% url 'persontracker:nationality_create' %}">Add nationality</a>
 
     <ul>
     {% for object in object_list %}
-        <li><a href="{% url 'person_detail' pk=object.pk %}">{{ object.full_name }}</a></li>
+        <li><a href="{% url 'persontracker:person_detail' pk=object.pk %}">{{ object.full_name }}</a></li>
     {% endfor %}
     </ul>
 

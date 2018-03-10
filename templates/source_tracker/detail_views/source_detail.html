@@ -2,15 +2,15 @@
 {% block content %}
 <div class="container">
 <h1>{{ object.title }} - Source Detail</h1>
-<a href="{% url 'source_update' pk=object.pk %}">Update</a>
+<a href="{% url 'sourcetracker:source_update' pk=object.pk %}">Update</a>
 <br>
 <h4>Tags:</h4>
 {% for tag in object.tags.all %}
-    <a href="{% url 'tag_detail' pk=tag.pk %}">| {{tag}} |</a>
+    <a href="{% url 'notes:tag_detail' pk=tag.pk %}">| {{tag}} |</a>
 {% endfor %}
 <hr>
 
-<a href="{% url 'source_create_note' 'source' 'source_tracker' object.pk %}">create note</a>
+<a href="{% url 'sourcetracker:source_create_note' 'source' 'source_tracker' object.pk %}">create note</a>
 
 {% include 'notes/own_notes_section.html'%}
 {% include 'notes/source_note_section.html' %}

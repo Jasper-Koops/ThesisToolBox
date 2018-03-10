@@ -29,7 +29,7 @@ class BlockQuoteAdmin(admin.ModelAdmin):
 
 
 class SearchQueryAdmin(admin.ModelAdmin):
-    list_display = ['query', 'date']
+    list_display = ['query', 'started', 'completed', 'finished']
     search_fields = ['query']
 
 class QueryParamAdmin(admin.ModelAdmin):

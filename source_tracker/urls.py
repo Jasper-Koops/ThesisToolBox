@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from .views import *
+from notes.views import NoteUpdateView
 
 urlpatterns = [
     url('^$', Home.as_view(), name='source_tracker_home'),

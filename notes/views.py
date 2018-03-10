@@ -25,7 +25,6 @@ class BaseNoteCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         self.model = self.kwargs['model']
         self.app = self.kwargs['app']
-        print(self.app)
         self.key = self.kwargs['model_pk']
         self.model_object = apps.get_model(self.app, self.model)
         self.linked_object = self.model_object.objects.get(pk=self.key)
