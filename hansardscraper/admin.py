@@ -28,9 +28,18 @@ class BlockQuoteAdmin(admin.ModelAdmin):
     search_fields = ['speaker__name', 'debate__title', 'text']
 
 
-class SearchQueryAdmin(admin.ModelAdmin):
-    list_display = ['query', 'started', 'completed', 'finished']
+class SearchAdmin(admin.ModelAdmin):
+    list_display = ['started', 'completed', 'finished']
+    list_filter = ['finished']
+
+
+class QueryAdmin(admin.ModelAdmin):
+    list_display = ['search', 'terms', 'started', 'completed', 'finished']
     search_fields = ['query']
+
+
+class SimpleQueryAdmin(admin.ModelAdmin):
+    pass
 
 class QueryParamAdmin(admin.ModelAdmin):
     list_display = ['query', 'quote', 'matches', 'created']
@@ -43,5 +52,7 @@ admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Session, SessionAdmin)
 admin.site.register(Debate, DebateAdmin)
 admin.site.register(BlockQuote, BlockQuoteAdmin)
-admin.site.register(SearchQuery, SearchQueryAdmin)
+admin.site.register(Query, QueryAdmin)
+admin.site.register(Search, SearchAdmin)
+admin.site.register(SimpleQuery, SimpleQueryAdmin)
 admin.site.register(QueryParams, QueryParamAdmin)

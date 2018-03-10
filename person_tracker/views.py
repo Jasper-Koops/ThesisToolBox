@@ -23,7 +23,7 @@ class Home(LoginRequiredMixin, ListView):
 class PersonCreate(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     model = Person
-    success_url = reverse_lazy('person_tracker_home')
+    success_url = reverse_lazy('persontracker:person_tracker_home')
     form_class = PersonForm
     template_name = "person_tracker/person_create.html"
 
@@ -37,7 +37,7 @@ class PersonUpdate(LoginRequiredMixin, UpdateView):
     model = Person
     form_class = PersonForm
     template_name = 'person_tracker/person_create.html'
-    success_url = reverse_lazy('person_tracker_home')
+    success_url = reverse_lazy('persontracker:person_tracker_home')
 
 
 class PersonDetail(LoginRequiredMixin, DetailView):
@@ -50,7 +50,7 @@ class PersonDetail(LoginRequiredMixin, DetailView):
 class PersonNoteAdd(BaseNoteCreateView):
     login_url = '/login/'
     template_name = "person_tracker/generic_form.html"
-    success_url = reverse_lazy('person_tracker_home')
+    success_url = reverse_lazy('persontracker:person_tracker_home')
 
 
 class PersonNoteUpdate():
@@ -61,7 +61,7 @@ class PersonNoteUpdate():
 class NationalityCreate(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     model = Nationality
-    success_url = reverse_lazy('person_tracker_home')
+    success_url = reverse_lazy('persontracker:person_tracker_home')
     fields = ['name']
     template_name = "person_tracker/nationality_create.html"
 

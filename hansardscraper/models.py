@@ -39,36 +39,59 @@ class BlockQuote(models.Model):
     text = models.TextField()
 
 
-class SearchQuery(models.Model):
-    query = models.CharField(max_length=200)
-    results = models.ManyToManyField(BlockQuote, through='QueryParams', blank=True, null=True)
+class Search(models.Model):
+    started = models.DateTimeField(auto_now_add=True)
+    completed = models.DateTimeField(blank=True, null=True)
+    finished = models.BooleanField(default=False)
+
+    @property
+    def query(self):
+        if self.simple_query:
+            return self.simple_query
+        if self.query:
+            return self.query
+
+    def __str__(self):
+        return 'search on ' + str(self.started)
+
+
+class SimpleQuery(models.Model):
+    search = models.ForeignKey(Search, related_name='simple_query')
+    term = models.CharField(max_length=200)
+    results = models.ManyToManyField(
+        BlockQuote,
+        through='SimpleQueryParams',
+        blank=True
+    )
+
+    def __str__(self):
+        return 'SimpleSearchQuery__' + str(self.search)
+
+
+class Query(models.Model):
+    search = models.ForeignKey(Search, related_name='query')
+    terms = models.CharField(max_length=200)
+    results = models.ManyToManyField(
+        BlockQuote,
+        through='QueryParams',
+        blank=True
+    )
     started = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(blank=True, null=True)
     finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.query
+        return str(self.terms)
 
-    # @property
-    # def get_debates(self):
-    #     """
-    #     This might be very slow!
-    #     """
-    #     # debate_list = []
-    #     # for quote in self.quotes.all():
-    #     #     if quote.debate not in debate_list:
-    #     #         debate_list.append(quote.debate)
-    #     # return debate_list
-    #
-    #     #This will most lickely crash
-    #     return self.quotes.debate.distinct()
 
-#
-class QueryParams(models.Model):
+class SimpleQueryParams(models.Model):
     quote = models.ForeignKey(BlockQuote)
-    query = models.ForeignKey(SearchQuery)
-    matches = models.IntegerField(blank=True, null=True)
+    query = models.ForeignKey(SimpleQuery)
     created = models.DateTimeField(auto_now_add=True)
 
 
-
+class QueryParams(models.Model):
+    quote = models.ForeignKey(BlockQuote)
+    query = models.ForeignKey(Query)
+    matches = models.IntegerField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
