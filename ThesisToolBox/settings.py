@@ -198,5 +198,6 @@ TINYMCE_DEFAULT_CONFIG = {
         }
 
 RAVEN_CONFIG = {
-    'dsn': 'https://5a821e7dbeea4344a52f76db412063b9:ac5809eb2ff543eb89952bc28700e5fb@sentry.io/283289',
-}
+    'dsn': 'https://5a821e7dbeea4344a52f76db412063b9:ac5809eb2ff543eb89952bc28700e5fb@sentry.io/283289',}
+
+CELERY_BROKER_URL = 'amqp://localhost'
