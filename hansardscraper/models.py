@@ -1,6 +1,7 @@
 from django.db import models
 from fuzzywuzzy import fuzz
 
+
 class URL(models.Model):
     url = models.URLField()
     checked = models.BooleanField(default=False)
@@ -9,6 +10,16 @@ class URL(models.Model):
 class Speaker(models.Model):
     name = models.CharField(max_length=200)
     url = models.URLField(blank=True, null=True)
+
+    @property
+    def debates(self):
+        debates = Debate.objects.filter(quotes__in=self.quotes.all())
+        return debates.distinct()
+
+    @property
+    def sessions(self):
+        sessions = Session.objects.filter(debates__in=self.debates)
+        return sessions.distinct()
 
     def __str__(self):
         return self.name
@@ -23,11 +34,25 @@ class Session(models.Model):
     date = models.DateTimeField()
     url = models.URLField()
 
+    @property
+    def speakers(self):
+        linked_quotes = BlockQuote.objects.filter(debate__in=self.debates.all())
+        speakers = Speaker.objects.filter(quotes__in=linked_quotes)
+        return speakers.distinct()
+
+    def __str__(self):
+        return ("session on %s" % (self.date))
+
 
 class Debate(models.Model):
     session = models.ForeignKey(Session, related_name='debates')
     title = models.CharField(max_length=400)
     url = models.URLField()
+
+    @property
+    def speakers(self):
+        speakers = Speaker.objects.filter(quotes__in=self.quotes.all())
+        return speakers.distinct()
 
     def __str__(self):
         return self.title
@@ -37,6 +62,9 @@ class BlockQuote(models.Model):
     debate = models.ForeignKey(Debate, related_name='quotes')
     speaker = models.ForeignKey(Speaker, related_name='quotes')
     text = models.TextField()
+
+    def __str__(self):
+        return ("quote %d - %s" % (self.pk, self.debate.title))
 
 
 class Search(models.Model):

@@ -3,9 +3,8 @@
 <div class="container">
     <div class="row">
         <div>
-            <h1>LINK NAAR DEBATE/ SESSIOn</h1>
-            <h2>MARK USEFULL</h2>
             <h1><a href="#">{{ object.debate.title }}</a></h1>
+            <a href="{% url 'scraper:debate_detail' pk=object.debate.pk %}">Debate</a>
             <p>{{ object.text|linebreaks }}</p>
         </div>
     </div>
