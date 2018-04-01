@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from .models import Search, BlockQuote
+from .models import Search, BlockQuote, Debate, Session, Speaker
 from hansardscraper.tasks import perform_query
 
 
@@ -26,3 +26,21 @@ class QuoteDetailView(LoginRequiredMixin, DetailView):
     login_url = '/login/'
     template_name = 'hansardscraper/quote.html'
     model = BlockQuote
+
+
+class DebateDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
+    template_name = 'hansardscraper/debate_detail.html'
+    model = Debate
+
+
+class SessionDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
+    template_name = 'hansardscraper/session_detail.html'
+    model = Session
+
+
+class SpeakerDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
+    template_name = 'hansardscraper/speaker_detail.html'
+    model = Speaker

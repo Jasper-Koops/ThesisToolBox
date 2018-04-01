@@ -4,15 +4,12 @@
     <div class="row">
         <div>
             <h1>Search Detail - Term: {{ object.linked_query.term }} </h1>
-            {{ object }}
             <br>
             <ul>
             {% for result in object.linked_query.results.all %}
 
                 <li>
                 <h3><a href="{% url 'scraper:quote_detail' pk=result.quote.pk %}">{{ result }}</a> - <b>{{ result.quote.debate.session.date}}</b></h3>
-                <br>
-                {{ result.quote }}
                 <br>
                 {{ result.excerpt|linebreaks }}
                 </li>

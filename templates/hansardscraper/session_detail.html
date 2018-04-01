@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div>
+            <h1>Session Detail</h1>
+            <b>Date: {{ object.date }} | Type: {{ object.type }}</b>
+            <a href="{{ object.url }}">Link</a>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <h3>Debates:</h3>
+            <ul>
+            {% for debate in object.debates.all %}
+                <li><a href="{% url 'scraper:debate_detail' pk=debate.pk %}">{{ debate }}</a></li>
+            {% endfor %}
+        </div>
+        <div class="col-md">
+            <h3>Speakers:</h3>
+            <ul>
+            {% for speaker in object.speakers.all %}
+                <li><a href="{% url 'scraper:speaker_detail' pk=speaker.pk %}">{{ speaker }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
