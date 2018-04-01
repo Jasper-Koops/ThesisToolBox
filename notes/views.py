@@ -74,7 +74,7 @@ class TagDetail(LoginRequiredMixin, DetailView):
         linked_Sources = Source.objects.filter(
             tags__id=self.object.pk,
             user=self.request.user
-        )
+        ).order_by('-pk')
         data['notes'] = tag_dict_generator(linked_Sources, self)
         return data
 

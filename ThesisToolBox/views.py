@@ -10,7 +10,7 @@ class Index(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         data = super(Index, self).get_context_data(**kwargs)
-        data['notes'] = Note.objects.filter(user=self.request.user).order_by('-id')[:5]
+        data['notes'] = Note.objects.filter(user=self.request.user).order_by('-id')[:3]
 
-        data['tags'] = Tag.objects.filter(user=self.request.user).order_by('-id')[:5]
+        data['tags'] = Tag.objects.filter(user=self.request.user).order_by('-id')[:8]
         return data
