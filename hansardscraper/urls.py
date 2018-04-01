@@ -6,10 +6,14 @@ urlpatterns = [
         SearchListView.as_view(),
         name='search_overview'
         ),
-    # url('^searches/(?P<pk>[0-9]+)/$',
-    #     SearchDetailView.as_view(),
-    #     name='search_detail'
-    #     ),
+    url('^searches/(?P<pk>[0-9]+)/$',
+        SearchDetailView.as_view(),
+        name='search_detail'
+        ),
+    url('^quotes/(?P<pk>[0-9]+)/$',
+        QuoteDetailView.as_view(),
+        name='quote_detail'
+        ),
 ]
 
 

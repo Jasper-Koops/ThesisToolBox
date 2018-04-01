@@ -47,6 +47,13 @@ class QueryParamAdmin(admin.ModelAdmin):
     list_filter = ['query']
 
 
+class PrimitiveQueryAdmin(admin.ModelAdmin):
+    pass
+
+class PrimitiveQueryResultAdmin(admin.ModelAdmin):
+    raw_id_fields = ['quote', 'query']
+
+
 admin.site.register(URL, URLAdmin)
 admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Session, SessionAdmin)
@@ -56,3 +63,5 @@ admin.site.register(Query, QueryAdmin)
 admin.site.register(Search, SearchAdmin)
 admin.site.register(SimpleQuery, SimpleQueryAdmin)
 admin.site.register(QueryParams, QueryParamAdmin)
+admin.site.register(PrimitiveQuery, PrimitiveQueryAdmin)
+admin.site.register(PrimitiveQueryResult, PrimitiveQueryResultAdmin)

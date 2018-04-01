@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-md">
         <h2>Tags</h2>
-        <p>Recente tags</p>
         <hr>
         {% for tag in tags %}
         <a href="{% url 'notes:tag_detail' pk=tag.pk %}">{{ tag.name }}</a><hr>

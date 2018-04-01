@@ -2,11 +2,21 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        <form class="col-md-5 " method="post" action="">
+            {% csrf_token %}
+            <input type="text" name="search-query">
+            <input type="submit" value="Primitive Query">
+        </form>
         <div>
             <h1>Search List</h1>
-            {% for search in objects %}
-                {{ search }}
+            <ul>
+            {% for search in object_list %}
+                <li>{{ search }}</li>
+                {% for query in search.primitive_query.all %}
+                    <a href="{% url 'scraper:search_detail' pk=search.pk %}">{{ query.term }}</a>
+                {% endfor %}
             {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
