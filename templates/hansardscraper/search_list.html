@@ -9,11 +9,12 @@
         </form>
         <div>
             <h1>Search List</h1>
-            <ul>
+            <ul >
             {% for search in object_list %}
-                <li>{{ search }}</li>
+                <li
+                {% if not search.finished %} style="background-color:FFAAAA;" {% else %} style="background-color:97D38D;" {% endif %}>
                 {% for query in search.primitive_query.all %}
-                    <a href="{% url 'scraper:search_detail' pk=search.pk %}">{{ query.term }}</a> - {{ query.number_of_results }} results.
+                    <a href="{% url 'scraper:search_detail' pk=search.pk %}">{{ query.term }}</a> - {{ query.number_of_results }} results.</li>
                 {% endfor %}
             {% endfor %}
             </ul>
