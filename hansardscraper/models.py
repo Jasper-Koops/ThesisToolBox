@@ -102,6 +102,13 @@ class PrimitiveQuery(models.Model):
     search = models.ForeignKey(Search, related_name='primitive_query')
     term = models.CharField(max_length=200)
 
+    @property
+    def number_of_results(self):
+        """
+        :return: number of results linked to this query
+        """
+        return self.results.all().count()
+
     def __str__(self):
         return 'PrimitiveSearchQuery__' + str(self.search)
 
