@@ -13,7 +13,7 @@
             {% for search in object_list %}
                 <li>{{ search }}</li>
                 {% for query in search.primitive_query.all %}
-                    <a href="{% url 'scraper:search_detail' pk=search.pk %}">{{ query.term }}</a>
+                    <a href="{% url 'scraper:search_detail' pk=search.pk %}">{{ query.term }}</a> - {{ query.number_of_results }} results.
                 {% endfor %}
             {% endfor %}
             </ul>
