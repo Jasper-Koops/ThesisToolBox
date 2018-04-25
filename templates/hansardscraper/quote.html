@@ -10,9 +10,20 @@
                 <div class="input-group">
                     <button name="favorite" value="true"> Favorite</button>
                 </div>
+                <a href="{% url 'scraper:favorite_create_note' 'quote' 'scraper' object.pk %}">create note</a>
             </form>
             <p>{{ object.text|linebreaks }}</p>
         </div>
+        <hr>
     </div>
+    <h4>Notes</h4>
+        {% for note in object.notes.all %}
+            <b>{{ note.added_on }}</b>
+            {{ note.content|safe}}
+            {% for tag in note.tags.all %}
+            | <a href="{% url 'notes:tag_detail' pk=tag.pk %}">{{ tag }}</a> | <br>
+            {% endfor %}
+            <hr>
+        {% endfor %}
 </div>
 {% endblock %}
