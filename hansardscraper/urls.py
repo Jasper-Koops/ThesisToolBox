@@ -2,6 +2,10 @@ from django.conf.urls import url
 from .views import *
 
 urlpatterns = [
+    url('^favorites/$',
+        FavoritesListView.as_view(),
+        name='favorites'
+        ),
     url('^searches/$',
         SearchListView.as_view(),
         name='search_overview'

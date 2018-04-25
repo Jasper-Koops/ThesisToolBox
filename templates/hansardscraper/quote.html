@@ -5,6 +5,12 @@
         <div>
             <h1><a href="#">{{ object.debate.title }}</a></h1>
             <a href="{% url 'scraper:debate_detail' pk=object.debate.pk %}">Debate</a>
+            <form class="col-md-5 " method="post" action="">
+                {% csrf_token %}
+                <div class="input-group">
+                    <button name="favorite" value="true"> Favorite</button>
+                </div>
+            </form>
             <p>{{ object.text|linebreaks }}</p>
         </div>
     </div>

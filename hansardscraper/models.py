@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from fuzzywuzzy import fuzz
 
 
@@ -41,13 +42,16 @@ class Session(models.Model):
         return speakers.distinct()
 
     def __str__(self):
-        return ("session on %s" % (self.date))
+        return "session on %s" % self.date
 
 
 class Debate(models.Model):
     session = models.ForeignKey(Session, related_name='debates')
     title = models.CharField(max_length=400)
     url = models.URLField()
+    favorited = models.BooleanField(default=False)
+    read = models.BooleanField(default=False)
+    notes = GenericRelation('notes.note', blank=True, null=True, related_name='notes')
 
     @property
     def speakers(self):
@@ -62,9 +66,12 @@ class BlockQuote(models.Model):
     debate = models.ForeignKey(Debate, related_name='quotes')
     speaker = models.ForeignKey(Speaker, related_name='quotes')
     text = models.TextField()
+    favorited = models.BooleanField(default=False)
+    read = models.BooleanField(default=False)
+    notes = GenericRelation('notes.note', blank=True, null=True, related_name='notes')
 
     def __str__(self):
-        return ("quote %d - %s" % (self.pk, self.debate.title))
+        return "quote %d - %s" % (self.pk, self.debate.title)
 
 
 class Search(models.Model):
@@ -148,7 +155,7 @@ class PrimitiveQueryResult(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     excerpt = models.TextField(blank=True, null=True)
     seen = models.BooleanField(default=False)
-    usefull = models.NullBooleanField(blank=True, null=True, default=None)
+    useful = models.NullBooleanField(blank=True, null=True, default=None)
 
     def __str__(self):
         return self.query.term + ' ' + str(self.quote.pk)
@@ -164,12 +171,12 @@ class PrimitiveQueryResult(models.Model):
         split_text = text.split()
         for word in split_text:
             if fuzz.ratio(word.lower(), query.lower()) > 88:
-            # if word.lower() == query.lower():
+                # if word.lower() == query.lower():
                 index = split_text.index(word)
                 # Capitalize matched term, so its easier to read
                 split_text[index] = word.upper()
                 # Create excerpts
-                excerpts += ' '.join(split_text[index -40: index + 40])
+                excerpts += ' '.join(split_text[index - 40: index + 40])
                 excerpts += "\n\n=========\n\n"
         self.excerpt = excerpts
         self.save()

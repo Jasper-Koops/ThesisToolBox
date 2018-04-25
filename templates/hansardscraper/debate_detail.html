@@ -8,6 +8,12 @@
             <br>
             <a href="{% url 'scraper:session_detail' pk=object.session.pk %}">Session: {{ object.session }}</a>
             </br>
+            <form class="col-md-5 " method="post" action="">
+                {% csrf_token %}
+                <div class="input-group">
+                    <button name="favorite" value="true"> Favorite</button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="row">

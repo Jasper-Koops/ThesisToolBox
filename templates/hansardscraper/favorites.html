@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h3>Quotes</h3>
+            {% for quote in quotes %}
+                <h4><a href="{% url 'scraper:quote_detail' pk=quote.pk %}">{{ quote }}</a> - <b>{{ quote.debate.session.date}}</b></h4>
+            {% endfor %}
+        </div>
+        <div class="col-md">
+            <h3>Debates</h3>
+            {% for debate in debates %}
+                <h4><a href="{% url 'scraper:debate_detail' pk=debate.pk %}">{{ debate }}</a> - <b>{{ debate.session.date}}</b></h4>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
