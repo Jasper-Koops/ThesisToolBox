@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8#jl=x8xsp$mg3eergm733(64ihr$0kwps=&8%jyu!-#3y-c-x'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,7 +29,7 @@ DEBUG = True
 if DEBUG == True:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['188.226.169.96', 'www.samenvatting.nu', 'samenvatting.nu', 'americanstudies.nu', 'www.americanstudies.nu']
+    ALLOWED_HOSTS = ['']
 
 
 # Application definition
@@ -94,9 +94,9 @@ WSGI_APPLICATION = 'ThesisToolBox.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'thesistoolbox',
-        'USER': 'jasper',
-        'PASSWORD': 'T440sLetmein3003',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -181,7 +181,7 @@ REST_FRAMEWORK = {
     )
 }
 
-GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-85972445-4'
+GOOGLE_ANALYTICS_PROPERTY_ID = ''
 
 
 
@@ -198,6 +198,6 @@ TINYMCE_DEFAULT_CONFIG = {
         }
 
 RAVEN_CONFIG = {
-    'dsn': 'https://5a821e7dbeea4344a52f76db412063b9:ac5809eb2ff543eb89952bc28700e5fb@sentry.io/283289',}
+    'dsn': '',}
 
 CELERY_BROKER_URL = 'amqp://localhost'
