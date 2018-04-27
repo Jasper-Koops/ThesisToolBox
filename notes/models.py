@@ -5,9 +5,11 @@ from django.utils import timezone
 from django.db import models
 from tinymce import models as tinymce_models
 
+
 class Thesis(models.Model):
     name = models.CharField(max_length=100)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
     def __str__(self):
         return self.name
 

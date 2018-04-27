@@ -1,7 +1,5 @@
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from source_tracker.models import Source
-from person_tracker.models import Person
 from notes.models import Note, Tag
 
 class Index(LoginRequiredMixin, TemplateView):

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericRelation
 from fuzzywuzzy import fuzz
 
 

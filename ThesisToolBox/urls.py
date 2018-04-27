@@ -1,9 +1,10 @@
+from rest_api.views import *
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from rest_framework import routers
 from.views import *
-from rest_api.views import *
+
 
 router = routers.DefaultRouter()
 router.register(r'persons', PersonViewSet)

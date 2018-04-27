@@ -41,6 +41,7 @@ class QueryAdmin(admin.ModelAdmin):
 class SimpleQueryAdmin(admin.ModelAdmin):
     pass
 
+
 class QueryParamAdmin(admin.ModelAdmin):
     list_display = ['query', 'quote', 'matches', 'created']
     search_fields = ['query', 'quote']
@@ -49,6 +50,7 @@ class QueryParamAdmin(admin.ModelAdmin):
 
 class PrimitiveQueryAdmin(admin.ModelAdmin):
     pass
+
 
 class PrimitiveQueryResultAdmin(admin.ModelAdmin):
     raw_id_fields = ['quote', 'query']
