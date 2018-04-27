@@ -32,3 +32,9 @@ You either access the database or perform queries to find the results that you n
 ![Alt text](/images/sources.png?raw=true)
 
 
+# Installation - extra steps!
+1. Add the required variables to the 'settings.py' file
+2. Run migrations and start the program either locally or on a server. 
+
+
+
